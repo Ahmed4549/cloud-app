@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../footer";
 import Navbar from "../navbar";
 
 let container = {
@@ -10,6 +11,7 @@ let container = {
 let childrenWrapper = {
   minHeight: "50vh",
   paddingTop: "1rem",
+  paddingBottom: "3rem",
 };
 
 const Layout = ({ children }) => {
@@ -17,6 +19,7 @@ const Layout = ({ children }) => {
     <div style={container}>
       <Navbar />
       <div style={childrenWrapper}>{children}</div>
+      <Footer />
     </div>
   );
 };
