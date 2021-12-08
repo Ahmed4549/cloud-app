@@ -13,7 +13,6 @@ export default function CustomAccordion(props) {
     setExpanded(isExpanded ? panel : false);
   };
 
-  console.log(props.data);
   // TODO: low, medium, high risk => lower case => colorful text
 
   return (

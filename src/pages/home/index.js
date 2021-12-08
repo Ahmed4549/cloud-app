@@ -1,14 +1,20 @@
 import { Button, Box } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import CustomAccordion from "../../components/accordion";
 import Card from "../../components/card";
 import LinearProgressbar from "../../components/linearProgress";
 import data from "../../assets/signatures-metadata.json";
+import TransitionModal from "../../components/modal";
 
+const homeMain = {
+  padding: "2rem",
+};
 const Home = () => {
-  const homeMain = {
-    padding: "2rem",
-  };
+  // state
+  const [showModal, setShowModal] = useState(false);
+
+  // functions
+  const openModal = () => setShowModal(true);
 
   return (
     <div style={homeMain}>
@@ -20,8 +26,11 @@ const Home = () => {
         })}
       </Box>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <Button variant="outlined">Unlock Checklist</Button>
+        <Button onClick={openModal} variant="outlined">
+          Unlock Checklist
+        </Button>
       </div>
+      <TransitionModal show={showModal} setShow={setShowModal} />
     </div>
   );
 };

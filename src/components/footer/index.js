@@ -1,6 +1,8 @@
 import { Paper, Typography, Box } from "@mui/material";
 
 const Footer = () => {
+  let date = new Date();
+  let year = date.getFullYear();
   return (
     <Paper
       sx={{
@@ -10,6 +12,7 @@ const Footer = () => {
         right: 0,
         height: "3rem",
       }}
+      elevation={2}
     >
       <Box
         sx={{
@@ -19,7 +22,9 @@ const Footer = () => {
           alignItems: "center",
         }}
       >
-        <Typography>Made With Love - Ahmed Anis</Typography>
+        <Typography sx={{ color: "text.secondary" }}>
+          &copy; Ahmed Anis | Made With &hearts; | {year}
+        </Typography>
       </Box>
     </Paper>
   );
