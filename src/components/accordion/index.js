@@ -59,6 +59,13 @@ export default function CustomAccordion(props) {
             </Typography>
             {props.data.pageDetail}
           </Typography>
+          <Divider sx={{ margin: "1rem 0" }} />
+          <Typography sx={{ fontWeight: "normal" }}>
+            <Typography sx={{ color: "text.secondary" }}>
+              Page Detail:
+            </Typography>
+            {props.data.RemediationSteps}
+          </Typography>
         </AccordionDetails>
       </Accordion>
     </>
