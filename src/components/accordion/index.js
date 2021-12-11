@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Divider } from "@mui/material";
 
-export default function CustomAccordion(props) {
+export default function CustomAccordion({ data, index }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -20,8 +20,8 @@ export default function CustomAccordion(props) {
       <Accordion
         variant="outlined"
         elevation={0}
-        expanded={expanded === `panel${props?.index}`}
-        onChange={handleChange(`panel${props?.index}`)}
+        expanded={expanded === `panel${index}`}
+        onChange={handleChange(`panel${index}`)}
       >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -30,19 +30,19 @@ export default function CustomAccordion(props) {
         >
           <Typography sx={{ width: "30%", flexShrink: 0, fontWeight: "bold" }}>
             <Typography sx={{ color: "text.secondary" }}>Name:</Typography>
-            {props.data.name}
+            {data?.name ? data.name : "N/A"}
           </Typography>
           <Typography sx={{ width: "20%", flexShrink: 0, fontWeight: "bold" }}>
             <Typography sx={{ color: "text.secondary" }}>Provider:</Typography>
-            {props.data.cloud}
+            {data?.cloud ? data.cloud : "N/A"}
           </Typography>
           <Typography sx={{ width: "25%", flexShrink: 0, fontWeight: "bold" }}>
             <Typography sx={{ color: "text.secondary" }}>Service:</Typography>
-            {props.data.service}
+            {data?.service ? data.service : "N/A"}
           </Typography>
           <Typography sx={{ width: "25%", flexShrink: 0, fontWeight: "bold" }}>
             <Typography sx={{ color: "text.secondary" }}>Risk:</Typography>
-            {props.data.risk}
+            {data?.risk ? data.risk : "N/A"}
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -50,21 +50,21 @@ export default function CustomAccordion(props) {
             <Typography sx={{ color: "text.secondary" }}>
               Description:
             </Typography>
-            {props.data.description}
+            {data?.description ? data.description : "N/A"}
           </Typography>
           <Divider sx={{ margin: "1rem 0" }} />
           <Typography sx={{ fontWeight: "normal" }}>
             <Typography sx={{ color: "text.secondary" }}>
               Page Detail:
             </Typography>
-            {props.data.pageDetail}
+            {data?.pageDetail ? data.pageDetail : "N/A"}
           </Typography>
           <Divider sx={{ margin: "1rem 0" }} />
           <Typography sx={{ fontWeight: "normal" }}>
             <Typography sx={{ color: "text.secondary" }}>
-              Page Detail:
+              Remediation Steps:
             </Typography>
-            {props.data.RemediationSteps}
+            {data?.RemediationSteps ? data.RemediationSteps : "N/A"}
           </Typography>
         </AccordionDetails>
       </Accordion>

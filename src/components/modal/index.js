@@ -6,6 +6,9 @@ import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Divider, TextField } from "@mui/material";
+import SimpleSnackbar from "../snackbar";
+import axios from "../../axios";
+import Loader from "../loader";
 
 const style = {
   position: "absolute",
@@ -37,6 +40,9 @@ export default function TransitionModal({ show, setShow }) {
   // states
   const [formState, setFormState] = React.useState(formInitialState);
   const [error, setError] = React.useState(errorInitialState);
+  const [showSnackbar, setShowSnackbar] = React.useState(false);
+  const [showLoader, setShowLoader] = React.useState(false);
+  const [snackbarMessage, setSnackbarMessage] = React.useState("");
 
   // functions
   // close modal
@@ -88,19 +94,48 @@ export default function TransitionModal({ show, setShow }) {
     return true;
   };
 
+  // close snackbar
+  const closeSnackbar = () => setShowSnackbar(false);
+
+  // close loader
+  const closeLoader = () => setShowLoader(false);
+
   // submit handler
   const submitHandler = () => {
     let isValid = validate();
     if (isValid) {
-      console.log(formState);
+      setShowLoader(true);
+      axios
+        .post("user/send-invite", formState)
+        .then((res) => {
+          console.log(res);
+          setShowLoader(false);
+          setShowSnackbar(true);
+          setSnackbarMessage(res.data.message);
+          localStorage.setItem(
+            "cloudSecurityChecklist",
+            res.data.cloudSecurityChecklist
+          );
+          closeModal();
+        })
+        .catch((err, res) => {
+          setShowLoader(false);
+          console.log(err);
+          setShowSnackbar(true);
+          if (err.response && err.response.data) {
+            setSnackbarMessage(err.response.data.message);
+          } else {
+            setSnackbarMessage(err.message);
+          }
+        });
     } else {
-      console.log("error");
+      setShowSnackbar(true);
+      setSnackbarMessage("Please Fill All The Fields.");
     }
-    // closeModal()
   };
 
   return (
-    <div>
+    <>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -190,6 +225,12 @@ export default function TransitionModal({ show, setShow }) {
           </Box>
         </Fade>
       </Modal>
-    </div>
+      <SimpleSnackbar
+        open={showSnackbar}
+        message={snackbarMessage}
+        close={closeSnackbar}
+      />
+      <Loader showLoader={showLoader} closeLoader={closeLoader} />
+    </>
   );
 }
