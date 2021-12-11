@@ -35,7 +35,7 @@ const CompleteChecklist = () => {
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <Button
           onClick={loadMore}
-          disable={count == 130 ? true : false}
+          disable={count === 130 ? true : false}
           variant="outlined"
         >
           Load More

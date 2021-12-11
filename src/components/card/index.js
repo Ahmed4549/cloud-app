@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { TextField, MenuItem } from "@mui/material";
+import { TextField, MenuItem, Button } from "@mui/material";
 import data from "../../assets/signatures-metadata.json";
 
 export default function OutlinedCard() {
@@ -39,6 +39,14 @@ export default function OutlinedCard() {
     localStorage.setItem("service", event.target.value);
   };
 
+  // clear all filters
+  const clearFilters = () => {
+    setService("");
+    setProvider("");
+    localStorage.removeItem("service");
+    localStorage.removeItem("provider");
+  };
+
   return (
     <Card variant="outlined">
       <CardContent>
@@ -47,44 +55,55 @@ export default function OutlinedCard() {
         </Typography>
         <Box
           sx={{
-            mb: 1.5,
             display: "flex",
-            gap: "1rem",
-            width: 600,
+            justifyContent: "space-between",
+            alignItems: "flex-start",
           }}
         >
-          <TextField
-            id="outlined-select-currency"
-            select
-            label="Cloud provider"
-            name="provider"
-            value={provider}
-            size="small"
-            onChange={handleProviderChange}
-            fullWidth
+          <Box
+            sx={{
+              mb: 1.5,
+              display: "flex",
+              gap: "1rem",
+              width: 600,
+            }}
           >
-            {cloudProvider.map((option) => (
-              <MenuItem key={option} value={option}>
-                {option}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            id="outlined-select-currency"
-            select
-            label="Cloud service"
-            name="service"
-            value={service}
-            size="small"
-            onChange={handleServiceChange}
-            fullWidth
-          >
-            {cloudService.map((option) => (
-              <MenuItem key={option} value={option}>
-                {option}
-              </MenuItem>
-            ))}
-          </TextField>
+            <TextField
+              id="outlined-select-currency"
+              select
+              label="Cloud provider"
+              name="provider"
+              value={provider}
+              size="small"
+              onChange={handleProviderChange}
+              fullWidth
+            >
+              {cloudProvider.map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              id="outlined-select-currency"
+              select
+              label="Cloud service"
+              name="service"
+              value={service}
+              size="small"
+              onChange={handleServiceChange}
+              fullWidth
+            >
+              {cloudService.map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </TextField>
+          </Box>
+          <Button onClick={clearFilters} variant="outlined">
+            Clear All Filters
+          </Button>
         </Box>
       </CardContent>
     </Card>
