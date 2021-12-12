@@ -54,15 +54,22 @@ const Home = () => {
     localStorage.removeItem("service");
     localStorage.removeItem("provider");
   };
-
   // filters
-  const providerFilter = data?.filter((data) => {
-    if (provider !== "" || service !== "") {
-      return data?.cloud === provider && data?.service === service;
+  const filteredData = () => {
+    console.log(data, provider, service);
+    if (provider !== "" && service !== "") {
+      return data?.filter((data) => {
+        return data?.cloud === provider && data?.service === service;
+      });
+    } else if (provider !== "" || service !== "") {
+      return data?.filter((data) => {
+        console.log(data?.cloud);
+        return data?.cloud === provider || data?.service === service;
+      });
     } else {
       return data;
     }
-  });
+  };
 
   return (
     <div style={homeMain}>
@@ -77,10 +84,12 @@ const Home = () => {
       />
       <LinearProgressbar />
       <Box sx={{ margin: "1.5rem 0" }}>
-        {providerFilter.length > 0 ? (
-          providerFilter.slice(0, 4).map((data, index) => {
-            return <CustomAccordion index={index} data={data} />;
-          })
+        {filteredData()?.length > 0 ? (
+          filteredData()
+            .slice(0, 4)
+            .map((data, index) => {
+              return <CustomAccordion index={index} data={data} />;
+            })
         ) : (
           <h3 style={{ textAlign: "center" }}>OOPS!!! No Data Found</h3>
         )}

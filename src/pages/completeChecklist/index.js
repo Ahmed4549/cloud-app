@@ -57,13 +57,22 @@ const CompleteChecklist = () => {
   };
 
   // filters
-  const providerFilter = data?.filter((data) => {
-    if (provider !== "" || service !== "") {
-      return data?.cloud === provider && data?.service === service;
+  const filteredData = () => {
+    console.log(data, provider, service);
+    if (provider !== "" && service !== "") {
+      return data?.filter((data) => {
+        return data?.cloud === provider && data?.service === service;
+      });
+    } else if (provider !== "" || service !== "") {
+      return data?.filter((data) => {
+        console.log(data?.cloud);
+        return data?.cloud === provider || data?.service === service;
+      });
     } else {
       return data;
     }
-  });
+  };
+
   // to load more items
   const loadMore = () => setCount((prevCount) => prevCount + 10);
 
@@ -80,15 +89,17 @@ const CompleteChecklist = () => {
       />
       <LinearProgressbar />
       <Box sx={{ margin: "1.5rem 0" }}>
-        {providerFilter.length > 0 ? (
-          providerFilter.slice(0, count).map((data, index) => {
-            return <CustomAccordion index={index} data={data} />;
-          })
+        {filteredData()?.length > 0 ? (
+          filteredData()
+            .slice(0, count)
+            .map((data, index) => {
+              return <CustomAccordion index={index} data={data} />;
+            })
         ) : (
           <h3 style={{ textAlign: "center" }}>OOPS!!! No Data Found</h3>
         )}
       </Box>
-      {providerFilter.length > 9 ? (
+      {filteredData()?.length > 9 ? (
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Button
             onClick={loadMore}
