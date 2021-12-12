@@ -9,6 +9,7 @@ import { Divider, TextField } from "@mui/material";
 import SimpleSnackbar from "../snackbar";
 import axios from "../../axios";
 import Loader from "../loader";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -24,6 +25,8 @@ const style = {
 };
 
 export default function TransitionModal({ show, setShow }) {
+  const navigate = useNavigate();
+
   // initial States
   const errorInitialState = {
     nameError: "",
@@ -40,8 +43,8 @@ export default function TransitionModal({ show, setShow }) {
   // states
   const [formState, setFormState] = React.useState(formInitialState);
   const [error, setError] = React.useState(errorInitialState);
-  const [showSnackbar, setShowSnackbar] = React.useState(false);
   const [showLoader, setShowLoader] = React.useState(false);
+  const [showSnackbar, setShowSnackbar] = React.useState(false);
   const [snackbarMessage, setSnackbarMessage] = React.useState("");
 
   // functions
@@ -100,6 +103,10 @@ export default function TransitionModal({ show, setShow }) {
   // close loader
   const closeLoader = () => setShowLoader(false);
 
+  const redirectToCompleteChecklist = () => {
+    navigate("/complete-checklist");
+  };
+
   // submit handler
   const submitHandler = () => {
     let isValid = validate();
@@ -118,15 +125,23 @@ export default function TransitionModal({ show, setShow }) {
           );
           closeModal();
         })
-        .catch((err, res) => {
+        .catch((err) => {
           setShowLoader(false);
           console.log(err);
           setShowSnackbar(true);
+          if (err.response && err.response.data.cloudSecurityChecklist) {
+            localStorage.setItem(
+              "cloudSecurityChecklist",
+              err.response.data.cloudSecurityChecklist
+            );
+          }
           if (err.response && err.response.data) {
             setSnackbarMessage(err.response.data.message);
           } else {
             setSnackbarMessage(err.message);
           }
+          closeModal();
+          redirectToCompleteChecklist();
         });
     } else {
       setShowSnackbar(true);

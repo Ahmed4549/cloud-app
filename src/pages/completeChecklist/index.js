@@ -9,7 +9,12 @@ const homeMain = {
   padding: "2rem",
 };
 const CompleteChecklist = () => {
+  const cloudProvider = [...new Set(data.map((item) => item?.cloud))]; //gets all distinct provicers from the array
+  const cloudService = [...new Set(data.map((item) => item?.service))]; //gets all distinct service from the array
+
   // state
+  const [provider, setProvider] = useState("");
+  const [service, setService] = useState("");
   const [count, setCount] = useState(4);
 
   // component did mount
@@ -18,29 +23,82 @@ const CompleteChecklist = () => {
     if (checkList) {
       setCount(10);
     }
+    let providerName = window.localStorage.getItem("provider");
+    let serviceName = window.localStorage.getItem("service");
+    if (providerName !== null) {
+      setProvider(providerName);
+    }
+    if (serviceName !== null) {
+      setService(serviceName);
+    }
   }, []);
 
   // functions
+  // handle menu change of cloud provider and save it to local storage
+  const handleProviderChange = (event) => {
+    setProvider(event.target.value);
+    localStorage.setItem("provider", event.target.value);
+    // filteredData();
+  };
+
+  // handle menu change of cloud services and save it to local storage
+  const handleServiceChange = (event) => {
+    setService(event.target.value);
+    localStorage.setItem("service", event.target.value);
+    // filteredData();
+  };
+
+  // clear all filters
+  const clearFilters = () => {
+    setService("");
+    setProvider("");
+    localStorage.removeItem("service");
+    localStorage.removeItem("provider");
+  };
+
+  // filters
+  const providerFilter = data?.filter((data) => {
+    if (provider !== "" || service !== "") {
+      return data?.cloud === provider && data?.service === service;
+    } else {
+      return data;
+    }
+  });
+  // to load more items
   const loadMore = () => setCount((prevCount) => prevCount + 10);
 
   return (
     <div style={homeMain}>
-      <Card />
+      <Card
+        provider={provider}
+        service={service}
+        providerDropdown={cloudProvider}
+        serviceDropdown={cloudService}
+        handleServiceChange={handleServiceChange}
+        handleProviderChange={handleProviderChange}
+        clearFilters={clearFilters}
+      />
       <LinearProgressbar />
       <Box sx={{ margin: "1.5rem 0" }}>
-        {data.slice(0, count).map((data, index) => {
-          return <CustomAccordion index={index} data={data} />;
-        })}
+        {providerFilter.length > 0 ? (
+          providerFilter.slice(0, count).map((data, index) => {
+            return <CustomAccordion index={index} data={data} />;
+          })
+        ) : (
+          <h3 style={{ textAlign: "center" }}>OOPS!!! No Data Found</h3>
+        )}
       </Box>
-      <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <Button
-          onClick={loadMore}
-          disable={count === 130 ? true : false}
-          variant="outlined"
-        >
-          Load More
-        </Button>
-      </div>
+      {providerFilter.length > 9 ? (
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Button
+            onClick={loadMore}
+            disable={count === 130 ? true : false}
+            variant="outlined"
+          >
+            Load More
+          </Button>
+        </div>
+      ) : null}
     </div>
   );
 };

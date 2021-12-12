@@ -4,54 +4,27 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { TextField, MenuItem, Button } from "@mui/material";
-import data from "../../assets/signatures-metadata.json";
 
-export default function OutlinedCard() {
-  const cloudProvider = [...new Set(data.map((item) => item?.cloud))]; //gets all distinct provicers from the array
-  const cloudService = [...new Set(data.map((item) => item?.service))]; //gets all distinct service from the array
-
-  // state
-  const [provider, setProvider] = React.useState("");
-  const [service, setService] = React.useState("");
-
-  // component did mount
-  React.useEffect(() => {
-    let providerName = window.localStorage.getItem("provider");
-    let serviceName = window.localStorage.getItem("service");
-    if (providerName !== "") {
-      setProvider(providerName);
-    }
-    if (serviceName !== "") {
-      setService(serviceName);
-    }
-  }, []);
-
-  // functions
-  // handle menu change of cloud provider and save it to local storage
-  const handleProviderChange = (event) => {
-    setProvider(event.target.value);
-    localStorage.setItem("provider", event.target.value);
-  };
-
-  // handle menu change of cloud services and save it to local storage
-  const handleServiceChange = (event) => {
-    setService(event.target.value);
-    localStorage.setItem("service", event.target.value);
-  };
-
-  // clear all filters
-  const clearFilters = () => {
-    setService("");
-    setProvider("");
-    localStorage.removeItem("service");
-    localStorage.removeItem("provider");
-  };
-
+export default function OutlinedCard({
+  provider,
+  service,
+  providerDropdown,
+  serviceDropdown,
+  handleServiceChange,
+  handleProviderChange,
+  clearFilters,
+}) {
   return (
     <Card variant="outlined">
       <CardContent>
-        <Typography variant="h6" component="div" sx={{ mb: 1.5 }}>
-          Filters:
+        <Typography variant="h6">Filters:</Typography>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          component="div"
+          sx={{ mb: 1.5 }}
+        >
+          single filter won't show any data because it will not match any record
         </Typography>
         <Box
           sx={{
@@ -78,7 +51,7 @@ export default function OutlinedCard() {
               onChange={handleProviderChange}
               fullWidth
             >
-              {cloudProvider.map((option) => (
+              {providerDropdown.map((option) => (
                 <MenuItem key={option} value={option}>
                   {option}
                 </MenuItem>
@@ -94,7 +67,7 @@ export default function OutlinedCard() {
               onChange={handleServiceChange}
               fullWidth
             >
-              {cloudService.map((option) => (
+              {serviceDropdown.map((option) => (
                 <MenuItem key={option} value={option}>
                   {option}
                 </MenuItem>

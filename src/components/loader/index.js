@@ -4,14 +4,12 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Loader({ showLoader, closeLoader }) {
   return (
-    <div>
-      <Backdrop
-        sx={{ color: "#fff", zIndex: 9999 }}
-        open={showLoader}
-        onClick={closeLoader}
-      >
-        <CircularProgress color="inherit" sx={{ color: "blue" }} />
-      </Backdrop>
-    </div>
+    <Backdrop
+      sx={{ color: "#fff", zIndex: 9999 }}
+      open={showLoader}
+      onClick={closeLoader}
+    >
+      <CircularProgress color="inherit" />
+    </Backdrop>
   );
 }

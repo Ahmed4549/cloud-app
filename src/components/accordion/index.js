@@ -13,7 +13,19 @@ export default function CustomAccordion({ data, index }) {
     setExpanded(isExpanded ? panel : false);
   };
 
-  // TODO: low, medium, high risk => lower case => colorful text
+  const getColor = () => {
+    if (data.risk) {
+      if (data.risk.toLowerCase() === "high") {
+        return "#FA2528";
+      } else if (data.risk.toLowerCase() === "medium") {
+        return "#FFBF00";
+      } else if (data.risk.toLowerCase() === "low") {
+        return "#15E918";
+      } else {
+        return "black";
+      }
+    }
+  };
 
   return (
     <>
@@ -40,7 +52,14 @@ export default function CustomAccordion({ data, index }) {
             <Typography sx={{ color: "text.secondary" }}>Service:</Typography>
             {data?.service ? data.service : "N/A"}
           </Typography>
-          <Typography sx={{ width: "25%", flexShrink: 0, fontWeight: "bold" }}>
+          <Typography
+            sx={{
+              width: "25%",
+              flexShrink: 0,
+              fontWeight: "bold",
+              color: getColor(),
+            }}
+          >
             <Typography sx={{ color: "text.secondary" }}>Risk:</Typography>
             {data?.risk ? data.risk : "N/A"}
           </Typography>
