@@ -15,6 +15,7 @@ const CompleteChecklist = () => {
   // state
   const [provider, setProvider] = useState("");
   const [service, setService] = useState("");
+  const [progressValue, setProgressValue] = useState(0);
   const [count, setCount] = useState(4);
 
   // component did mount
@@ -73,6 +74,12 @@ const CompleteChecklist = () => {
     }
   };
 
+  // progress bar val handler
+  const progressValueHandler = (value) => {
+    setProgressValue(value);
+    console.log(value, "vall");
+  };
+
   // to load more items
   const loadMore = () => setCount((prevCount) => prevCount + 10);
 
@@ -87,13 +94,19 @@ const CompleteChecklist = () => {
         handleProviderChange={handleProviderChange}
         clearFilters={clearFilters}
       />
-      <LinearProgressbar />
+      <LinearProgressbar progressValue={progressValue} />
       <Box sx={{ margin: "1.5rem 0" }}>
         {filteredData()?.length > 0 ? (
           filteredData()
             .slice(0, count)
             .map((data, index) => {
-              return <CustomAccordion index={index} data={data} />;
+              return (
+                <CustomAccordion
+                  progressValueHandler={progressValueHandler}
+                  index={index}
+                  data={data}
+                />
+              );
             })
         ) : (
           <h3 style={{ textAlign: "center" }}>OOPS!!! No Data Found</h3>

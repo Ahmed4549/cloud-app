@@ -4,10 +4,27 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Divider } from "@mui/material";
+import { Divider, Checkbox } from "@mui/material";
 
-export default function CustomAccordion({ data, index }) {
+export default function CustomAccordion({ data, index, progressValueHandler }) {
   const [expanded, setExpanded] = React.useState(false);
+
+  // checkbox change handler: handles count of checks and update checkboxes
+  const handleCheckChange = (e) => {
+    var inputElement = document.getElementsByTagName("input");
+    var count = 0;
+    for (var i = 0; i < inputElement.length; i++) {
+      if (
+        inputElement[i].type === "checkbox" &&
+        inputElement[i].checked === true
+      ) {
+        count++;
+      }
+    }
+    progressValueHandler(count);
+    // setChecked(e.target.checked);
+    data.checked = e.target.checked;
+  };
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -40,6 +57,17 @@ export default function CustomAccordion({ data, index }) {
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
+          <Checkbox
+            checked={data?.checked}
+            key={index}
+            // id={index}
+            name={`newCheckbox${index}`}
+            onChange={(e) => handleCheckChange(e)}
+            onClick={(event) => event.stopPropagation()}
+            onFocus={(event) => event.stopPropagation()}
+            inputProps={{ "aria-label": "controlled" }}
+            sx={{ mr: 4 }}
+          />
           <Typography sx={{ width: "30%", flexShrink: 0, fontWeight: "bold" }}>
             <Typography sx={{ color: "text.secondary" }}>Name:</Typography>
             {data?.name ? data.name : "N/A"}

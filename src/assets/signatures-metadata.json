@@ -1,5 +1,6 @@
 [
   {
+    "checked": "",
     "name": "AWS:CF-001",
     "cloud": "AWS",
     "risk": "High",
@@ -14,6 +15,7 @@
     "RemediationSteps": "To configure CloudFront to require HTTPS between CloudFront and your custom origin   1. Sign in to the AWS Management Console and open the CloudFront console at https://console.aws.amazon.com/cloudfront/.   2. In the top pane of the CloudFront console, choose the ID for the distribution that you want to update.   3. On the Origins tab, choose the origin that you want to update, and then choose Edit.   Update the following settings:   Origin Protocol Policy   Change the Origin Protocol Policy for the applicable origins in your distribution:   HTTPS Only – CloudFront uses only HTTPS to communicate with your custom origin.   Match Viewer – CloudFront communicates with your custom origin using HTTP or HTTPS, depending on the protocol of the viewer request. For example, if you choose Match Viewer for Origin Protocol Policy and the viewer uses HTTPS to request an object from CloudFront, CloudFront also uses HTTPS to forward the request to your origin.   Choose Match Viewer only if you specify Redirect HTTP to HTTPS or HTTPS Only for Viewer Protocol Policy.   CloudFront caches the object only once even if viewers make requests using both HTTP and HTTPS protocols.   Origin SSL Protocols   Choose the Origin SSL Protocols for the applicable origins in your distribution. The SSLv3 protocol is less secure, so we recommend that you choose SSLv3 only if your origin doesn't support TLSv1 or later.   Note   The TLSv1 handshake is both backwards and forwards compatible with SSLv3, but TLSv1.1 and TLSv1.2 are not. In this case, the openssl only sends a SSLv3 handshake.   Choose Yes, Edit.   Repeat steps 3 through 5 for each additional origin that you want to require HTTPS for between CloudFront and your custom origin.   Confirm the following before you use the updated configuration in a production environment:   The path pattern in each cache behavior applies only to the requests that you want viewers to use HTTPS for.   The cache behaviors are listed in the order that you want CloudFront to evaluate them in. For more information, see Path Pattern.   The cache behaviors are routing requests to the origins that you changed the Origin Protocol Policy for."
   },
   {
+    "checked": "",
     "name": "AWS:CF-002",
     "cloud": "AWS",
     "risk": "Medium",
@@ -28,6 +30,7 @@
     "RemediationSteps": "\"Login to the AWS Management Console.          Navigate to Cloudfront dashboard at https://console.aws.amazon.com/cloudfront/.                  On the Distributions page, select the CDN distribution that you want to update.                  Click the Distribution Settings button from the dashboard top menu to access the configuration page.                  On the General tab click the Edit button.                  On the Distribution Settings page, locate the Logging section and perform the following actions:                  Select On next to Logging to enable the feature.         In the Bucket for Logs box, specify the AWS S3 bucket where you want CloudFront to store the log files. If the selected distribution origin is also an S3 bucket, Cloudnosys recommends selecting a different bucket for storing the access logs.\""
   },
   {
+    "checked": "",
     "name": "AWS:CF-003",
     "cloud": "AWS",
     "risk": "High",
@@ -42,6 +45,7 @@
     "RemediationSteps": "\"Sign in to the AWS Management Console.          02 Navigate to CloudFront dashboard at https://console.aws.amazon.com/cloudfront/.                  03 In the left navigation panel, click Distributions.                  04 On CloudFront Distribution page, under the main menu, select Web and Enabled from Viewing dropdown menus to list all active web distributions available within your AWS account.                  05 Select the web distribution that you want to reconfigure (see Audit section part I to identify the right distribution).                  06 Click the Distribution Settings button from the dashboard top menu to access the resource configuration page.                  07 Choose the Behaviors tab and select the distribution default behavior.                  08 Click the Edit button to access the behavior configuration settings.                  09 On the Edit Behavior page, under Default Cache Behavior Settings, perform one of the following actions to enforce encryption for your web content:                  Set the Viewer Protocol Policy configuration attribute to Redirect HTTP to HTTPS so that any HTTP requests are automatically redirected to HTTPS requests. Click Yes, Edit to apply the changes.         Set the Viewer Protocol Policy attribute to HTTPS Only so that your application viewers can only access your web content using HTTPS. Choosing this option will drop any HTTP traffic between edge servers and viewers. Click Yes, Edit to apply the configuration changes.         10 Repeat steps no. 5 – 9 to reconfigure the viewer protocol policy for other Amazon CloudFront CDN distributions available within your AWS account.\""
   },
   {
+    "checked": "",
     "name": "AWS:CLT-001",
     "cloud": "AWS",
     "risk": "Medium",
@@ -56,6 +60,7 @@
     "RemediationSteps": "Enabling Validation and Validating Files        To enable log file integrity validation, you can use the AWS Management Console, the AWS CLI, or CloudTrail API.           AWS Management Console     To enable log file integrity validation with the CloudTrail console, choose Yes for the Enable log file validation option when you create or update a trail. By default, this feature is enabled for new trails. For more information, see Creating a Trail with the Console."
   },
   {
+    "checked": "",
     "name": "AWS:CLT-002",
     "risk": "Medium",
     "cloud": "AWS",
@@ -70,6 +75,7 @@
     "RemediationSteps": "To enable Cloudtrail to send its log to CloudWatch, Please do the following these steps:                           1)Sign in to the AWS Management Console and open the CloudTrail console at : https://console.aws.amazon.com/cloudtrail/                           2)Choose the trail name. If you choose a trail that applies to all regions, you will be redirected to the region in which the trail was created. You can create a log group or choose an existing log group in the same region as the trail.                           3)Now for CloudWatch Logs, choose Configure.                           4)Now for New or existing log group, type the log group name , and then choose Continue. For more information, see CloudWatch Log Group and Log Stream Naming for CloudTrail.                           5)For the IAM role, choose an existing role or create one. If you create an IAM role, type a role name.                           6)Choose Allow to grant CloudTrail permissions to create a CloudWatch Logs log stream and deliver events."
   },
   {
+    "checked": "",
     "name": "AWS:CLT-003",
     "cloud": "AWS",
     "risk": "High",
@@ -84,6 +90,7 @@
     "RemediationSteps": "Perform the following to setup the metric filter, alarm, SNS topic, and subscription:      1.Sign in to the AWS Management Console.      2.Navigate to CloudTrail dashboard at https://console.aws.amazon.com/cloudtrail/.      3.Select Trails from navigation panel.      4.Under Name column, select the trail name that you need to examine.      5.Check for S3 bucket name.      6.Navigate to S3 dashboard at https://console.aws.amazon.com/s3/.      7.Select the S3 bucket used by the CloudTrail trail, then click the Properties tab from the right panel.      8.In the Properties panel, click the Permissions tab and search for any grantee group with the name \"Everyone\". The grantee called \"Everyone\" is the AWS S3 predefined group that grants anonymous access. If this grantee has one or more permissions enabled,, the selected S3 bucket is publicly accessible and rendered as insecure.         "
   },
   {
+    "checked": "",
     "name": "AWS:CLT-004",
     "cloud": "AWS",
     "risk": "High",
@@ -98,6 +105,7 @@
     "RemediationSteps": "To encrypt your CloudTrail log files, perform the following steps:                     1)Sign in to the AWS Management Console.                     2)Navigate to CloudTrail dashboard at https://console.aws.amazon.com/cloudtrail/.                     3)In the left navigation panel, select Trails.                     4)Under Name column, select the trail name that you need to update.                     5)Click the pencil icon:                     6)Next to S3 section to edit the trail bucket configuration.                     7)Under S3 bucket* click Advanced.                     8)Select Yes next to Encrypt log files to encrypt your log files with SSE-KMS using a Customer Master Key (CMK).                     9)Select Yes next to Create a new KMS key to create a new CMK and enter a name for it:                     10)Otherwise select No to use an existing CMK encryption key available in the region:                     11)Click Save to enable SSE-KMS encryption."
   },
   {
+    "checked": "",
     "name": "AWS:CLT-005",
     "risk": "Low",
     "cloud": "AWS",
@@ -112,6 +120,7 @@
     "RemediationSteps": "To Fix this Issue, Please do the following steps:                     1)Sign in to the AWS Management Console.                     2)Navigate to CloudTrail dashboard at https://console.aws.amazon.com/cloudtrail/.                     3)In the left navigation panel, select Trails.                     4)Under Name column, select the trail name that you need to examine.                     5)Under S3 section check for the S3 bucket name                     6)Navigate to S3 dashboard at https://console.aws.amazon.com/s3/.                     7)Select the S3 bucket used for CloudTrail logging, then click the Properties tab from the right panel:                     8)In the Properties panel, click the Logging tab and set up access logging for the selected bucket:                     -Select Enabled checkbox to enable the feature.                     -In the Target Bucket field enter the name for the bucket that will store the access logs. You can use the selected bucket or create a new S3 bucket for these logs.                     -In the Target Prefix field enter a name for the subdirectory where the access logs will be stored – useful to manage your logs.                     9)Review the configuration details and click Save:                     -AWS will add automatically the necessary grantee (Log Delivery) and its permissions for the S3 bucket."
   },
   {
+    "checked": "",
     "name": "AWS:CLT-006",
     "risk": "High",
     "cloud": "AWS",
@@ -126,6 +135,7 @@
     "RemediationSteps": "To fix this issue, Please check if any public access has been granted to an S3 bucket via the bucket's ACL. For that purpose do the following steps:                     1)Go to the AWS CloudTrail console: https://console.aws.amazon.com/cloudtrail/home.                     2)In the API activity history pane, click Trails.                     3)In the Trails pane, note the bucket names in the S3 bucket column.                     4)Go to Amazon S3 console at https://console.aws.amazon.com/s3/home.                     5)For each bucket noted in step 3, right-click on the bucket and click Properties.                     6)In the Properties pane, click the Permissions tab. The tab shows a list of grants, one row per grant, in the bucket ACL. Each row identifies the grantee and the permissions granted. Ensure no rows exists that have the Grantee set to Everyone or the Grantee set to Any Authenticated User.                       Note: We recommend that that you do not configure CloudTrail to write into a S3 bucket that resides in a different AWS account."
   },
   {
+    "checked": "",
     "name": "AWS:CLT-007",
     "cloud": "AWS",
     "risk": "High",
@@ -140,6 +150,7 @@
     "RemediationSteps": " To enable CloudTrail in all applicable regions, please do the following steps:                           1)Sign in to the AWS Management Console.                           2)Navigate to CloudTrail dashboard at https://console.aws.amazon.com/cloudtrail/.                           3)In the left navigation panel, select Trails.                           4)Under Name column, select the trail name that you need to update.                           5)Under the trail name, search for the Apply trail to all regions status and click the pencil icon next to the status current value.                           6)Select Yes to enable the feature and click Save:                           7)The selected trail is now replicated across all regions."
   },
   {
+    "checked": "",
     "name": "AWS:CWALM-001",
     "cloud": "AWS",
     "risk": "High",
@@ -154,6 +165,7 @@
     "RemediationSteps": "\"Perform the following to setup the metric filter, alarm, SNS topic, and subscription:   1.Create a metric filter based on filter pattern provided which checks for S3 Bucket Policy   changes and the <group> taken from audit step 2.   2. Create an SNS topic that the alarm will notify   3. Create an SNS subscription to the topic created in step 2   4. Create an alarm that is associated with the CloudWatch Logs Metric Filter created in step 1   and an SNS topic created in step 2   \""
   },
   {
+    "checked": "",
     "name": "AWS:CWALM-002",
     "cloud": "AWS",
     "risk": "high",
@@ -168,6 +180,7 @@
     "RemediationSteps": "\"1. Create a metric filter based on filter pattern provided which checks for S3 Bucket Policy   changes and the <group> taken from audit step 2.   2. Create an SNS topic that the alarm will notify   3. Create an SNS subscription to the topic created in step 2   4. Create an alarm that is associated with the CloudWatch Logs Metric Filter created in step 1   and an SNS topic created in step 2   \""
   },
   {
+    "checked": "",
     "name": "AWS:CWEVENTS-001",
     "cloud": "AWS",
     "risk": "High",
@@ -182,6 +195,7 @@
     "RemediationSteps": "1.\tPlease Sign in to the AWS Management Console.   2.\tNavigate to CloudWatch dashboard at https://console.aws.amazon.com/cloudwatch/.   3.\tIn the left navigation panel, under Events section, select Rules.   4.\tClick Create rule button to start the process.   5.\tOn Step 1: Create rule page, perform the following actions:   6.\tWithin the Event Source section, select Schedule, choose Fixed rate of and specify the schedule interval (for example, 5 minutes) that will be used to invoke your AWS Lambda function.   7.\tIn the Targets section, click Add target button, select Lambda function as target type from the main dropdown list then select your Lambda function from the Function dropdown list.   8.\tClick Configure details to continue the setup process.   9.\tOn Step 2: Configure rule details page, enter a unique name for the event rule within the Name box then provide a short description for the rule (optional) within the Description box.   10.\tMake sure the State checkbox is enabled to activate the rule after creating it, then click Create rule button to create your new AWS CloudWatch Events rule.   11.\tRepeat steps no. 4 - 8 to create additional Amazon CloudWatch Events rules within the selected region.   12.\tChange the AWS region from the navigation bar and repeat the entire process for other regions."
   },
   {
+    "checked": "",
     "name": "AWS:DDB-001",
     "cloud": "AWS",
     "risk": "low",
@@ -196,6 +210,7 @@
     "RemediationSteps": "1. Sign in to AWS Management Console.    2. Navigate to DynamoDB dashboard at https://console.aws.amazon.com/dynamodb/.      3. In the left navigation panel, under Dashboard, click Tables.      4. Select the DynamoDB table that you want to reconfigure (see Audit section part I to identify the right resource).      5. Select the Backups tab to access the resource details panel.      6. On the Backups panel, within Point-in-time Recovery section, click Enable next to the Status configuration attribute value.      7. Within Enable Point-in-time Recovery dialog box, click Enable to activate continuous backups for the selected Amazon DynamoDB table. Once continuous backups are enabled, you should be able to see the Earliest restore date and Latest restore date attributes with the appropriate values.       8. Repeat steps no. 4 – 7 to enable automatic continuous backups for other AWS DynamoDB tables available within the current region.      9. Change the AWS region from the navigation bar and repeat the process for other regions."
   },
   {
+    "checked": "",
     "name": "AWS:DDB-002",
     "cloud": "AWS",
     "risk": "high",
@@ -210,6 +225,7 @@
     "RemediationSteps": "1. Sign in to AWS Management Console.    2. Navigate to DynamoDB dashboard at https://console.aws.amazon.com/dynamodb/.      3. In the left navigation panel, under Dashboard, click Tables to access the existing DynamoDB tables.      4. Select the Amazon DynamoDB table that you want to reconfigure (see Audit section part I to identify the right resource).      5. Select the Overview tab to access the resource details panel.      6. On the Overview panel, within Table details section, click the Manage Encryption link available next to Encryption Type.      7. Inside Manage Encryption dialog box, select KMS to configure Server-Side Encryption (SSE) to use an AWS-managed CMK for data-at-rest encryption. Click Save to apply the changes. Once the changes are applied, the Encryption Type configuration attribute value should change to KMS.      8. Repeat steps no. 4 – 7 to configure Server-Side Encryption (SSE) with AWS-managed Customer Master Keys (CMKs) for other Amazon DynamoDB tables available in the current region.      9. Change the AWS region from the navigation bar and repeat the process for other regions."
   },
   {
+    "checked": "",
     "name": "AWS:DDB-003",
     "cloud": "AWS",
     "risk": "high",
@@ -224,6 +240,7 @@
     "RemediationSteps": "1. Login to the AWS Management Console.    2. Navigate to DynamoDB dashboard at https://console.aws.amazon.com/dynamodb/.      3. In the left navigation panel, under Dashboard, click Tables.      4. Select the DynamoDB table that you want to remove.      5. Click on the Actions dropdown button from the dashboard top menu then select Delete table:      6. In the Delete table dialog box, choose whether you want to delete or not any AWS CloudWatch alarms associated with the selected table then click the Delete button to remove the table.      7. Repeat steps no. 4 - 6 to delete any unused Amazon DynamoDB tables provisioned within the current region.      8. Change the AWS region from the navigation bar and repeat the process for other regions."
   },
   {
+    "checked": "",
     "name": "AWS:EIP-001",
     "cloud": "AWS",
     "risk": "Medium",
@@ -238,6 +255,7 @@
     "RemediationSteps": "1.\tSign in to the AWS Management Console.   2.\tNavigate to VPC dashboard at https://console.aws.amazon.com/vpc/.   3.\tIn the left navigation panel, under Virtual Private Cloud section, choose Elastic IPs.   4.\tSelect Unassociated from the Filter dropdown menu to filter the available EIPs and return the unattached ones.   5.\tSelect the unassociated EIP(s) returned, click the Actions dropdown button from the dashboard top menu and select Release Address.   6.\tIn the Release Address confirmation box, review the unattached EIP(s) listed and click Yes, Delete button to remove the selected EIP(s) from your AWS account.   7.\tChange the AWS region from the navigation bar and repeat steps no. 4 - 6 to remove any unassociated EIPs within the other regions   "
   },
   {
+    "checked": "",
     "name": "AWS:EC2-005",
     "cloud": "AWS",
     "service": "EC2:Instance",
@@ -252,6 +270,7 @@
     "RemediationSteps": "To review settings for your IAM \t\t\t  1. Open the IAM console at https://console.aws.amazon.com/iam/ \t\t\t  2. In the navigation pane, choose Groups, then choose a IAM Group Config, select Users. \t\t\t  3. In Users, search for IAM users attached to the Groups. \t\t\t  4. If there are no IAM users attached, then AWS console will show the following message: “This group does not contain any users”. In conclusion, the selected Group is not used or orphan. Best practice for IAM security is to remove these orphaned Groups"
   },
   {
+    "checked": "",
     "name": "AWS:EC2-008",
     "cloud": "AWS",
     "risk": "Low",
@@ -266,6 +285,7 @@
     "RemediationSteps": " 1- Sign in to the AWS Management Console and go EC2 dashboard                        2- In the left navigation panel, under IMAGES section, choose AMIs.                       3- Select the image that you want to use.                       4- Select the Details tab and copy the EBS snapshot ID available as value for the Block Devices attribute.                       5- In the navigation panel, under ELASTIC BLOCK STORE section, choose Snapshots.                       6- Select the attributes filter box and click on Snapshot ID from the dropdown list.                       7- Paste the ID copied at step no. 4 into the attributes filter box as the Snapshot ID input value and press Enter."
   },
   {
+    "checked": "",
     "name": "AWS:EC2-009",
     "cloud": "AWS",
     "risk": "Medium",
@@ -280,6 +300,7 @@
     "RemediationSteps": " To fix this issue and ensure that no AMI’s are open to public, please follow these steps:                          1)Sign in to the AWS Management Console.                          2)Navigate to EC2 dashboard at https://console.aws.amazon.com/ec2/.                          3)In the left navigation panel, under IMAGES section, choose AMIs.                          4)Select the AMI that you want to make private.                          5)Select the Permissions tab from the dashboard bottom panel and click the Edit button to update the selected image launch permissions.                          6)In the Modify Image Permissions dialog box, select Private then click Save.                          7)Repeat steps no. 4 – 6 to restrict public access to the rest of the AMIs available in the current region.                          8)Change the AWS region to repeat the entire process for the other regions."
   },
   {
+    "checked": "",
     "name": "AWS:EC2-021",
     "cloud": "AWS",
     "risk": "Medium",
@@ -294,6 +315,7 @@
     "RemediationSteps": "1.\tSign in to the AWS Management Console.   2.\tNavigate to EC2 dashboard at https://console.aws.amazon.com/ec2/.   3.\tIn the navigation panel, under NETWORK & SECURITY section, choose Security Groups.   4.\tClick inside the attributes filter box located under the dashboard top menu, choose Group Name from the dropdown list and enter default to return the EC2 default security group.   5.\tSelect the default security group returned as result.   6.\tTo replace the default security group assigned to your instance(s), create a new custom security group and transfer any existing inbound/outbound rules to it. To create the necessary security group, perform the following actions:   7.\tIn the Security group name box, enter a name for your new custom security group. In the Description box, provide a description to reflect the security group usage. From the VPC dropdown list, select the appropriate VPC ID/name. Inside the Inbound tab, review and configure the ingress rules copied automatically from the default security group. Inside the Outbound tab, review and configure the egress rules copied automatically from the default security group. Click Create button to create the custom EC2 security group.   8.\tNow that the inbound and outbound rules are transferred to the new security group it is safe to replace the default security group with the custom one within the EC2 instance(s) network configuration. To replace it, perform the following actions:   9.\tChange the AWS region from the navigation bar and repeat the process for other regions.   "
   },
   {
+    "checked": "",
     "name": "AWS:EC2-022",
     "cloud": "AWS",
     "risk": "High",
@@ -308,6 +330,7 @@
     "RemediationSteps": "1.        Sign in to the AWS Management Console.   2.        Navigate to IAM dashboard at https://console.aws.amazon.com/iam/.   3.        In the left navigation panel, choose Roles.   4.        On the Roles page, click Create New Role to set up a new IAM role that your instance(s) can assume by performing the following actions:   a.        In the Role Name field enter a name for the role. Choose a name that will reflect the purpose of the role (e.g. EC2-Admin-Role) and click Next Step.   b.        Choose the AWS Service Roles section and then select the Amazon EC2 option.   c.        On the Attach Policy page, select the access policy to attach to the IAM role. This policy defines what actions your application can take and what AWS resources can access. As example, we will use the AmazonEC2FullAccess policy, which provides full access to all AWS EC2 services and resources (EC2, ELB, ASG, etc). You can also create your own custom policy using the AWS Policy Generator: https://awspolicygen.s3.amazonaws.com/policygen.html. Click Next Step to continue.   d.        On the Review page, review the role information (name, ARN, etc) and click Create Role to generate the new IAM role.   5.        Now it’s time to create an image (AMI) from your running EC2 instance. To instantiate the Amazon Machine Image (AMI), perform the following:   a.        Navigate to EC2 dashboard at https://console.aws.amazon.com/ec2/.   b.        In the left navigation panel, under INSTANCES section, choose Instances.   c.        Select the EC2 instance that requires roles for AWS API access (see the Audit section to identify any EC2 instances without IAM roles associated).   d.        Click the Actions dropdown button from the dashboard top menu, select Image and click Create Image.   e.        Inside Create Image dialog box, provide the following information:   f.        Enter a name for the new AMI in the Image Name box.   g.        In the Image description box, provide a description that reflects the usage of the EC2 instance selected.   h.        Leave No reboot option unchecked so the AWS can guarantee the file system integrity for the new image.   i.        Click Create Image to submit the request to create the image. Click Close to return to the EC2 dashboard. The AMI creation may take few minutes. Once the process is complete the image status should change from pending to available.   6.        Once the AMI is ready, use it to (re)launch the selected EC2 instance and attach the IAM role created earlier. To launch the instance, perform the following actions:   a.        In the navigation panel, under INSTANCES section, select Instances.   b.        Click the Launch Instance button from the EC2 dashboard top menu to initiate the process.   c.        On the Choose an Amazon Machine Image (AMI) page, choose My AMIs tab then select the AMI created at step no. 5.   d.        On the Choose an Instance Type page, select the same instance type used then click Next: Configure Instance Details button.   e.        On the Configure Instance Details page, select the newly created role from the IAM role dropdown list and configure any other options available on the page based on your running instance requirements. Click Next: Add Storage and go through the next pages until you reach the Configure Security Group page, without changing any configuration.   f.        On the Configure Security Groups, choose Select an existing security group and select the existing instance security group. Click the Review and Launch button, review your instance configuration details and click Launch.   g.        In the Select an existing key pair or create a new key pair dialog box, select Choose an existing key pair and use the same key pair as the running EC2 instance. Check I acknowledge that I have access to the selected private key file option then click Launch Instances.   h.        Click View Instances to return to the Instances page. The new instance will have the same data and configuration (except the new attached role) as the existing (old) EC2 instance.   7.        Once you have verified and tested the new instance, you can transfer the Elastic IP (EIP) from the old EC2 instance to the new instance for reference purposes. If the old instance does not have an EIP attached you will have to update the domain DNS record(s) or any other application references to switch to the new instance IP. To transfer the Elastic IP, perform the following actions:   a.        In the navigation panel, under NETWORK & SECURITY section, select Elastic IPs.   b.        Select the EIP address attached to the old running instance, click the Actions dropdown button then select Disassociate Address.   c.        In the Disassociate Address dialog box, review the details then click Yes, Disassociate.   d.        Select the same address, disassociated in the previous step, click the Actions dropdown button then select Associate Address.   e.        In the Associate Address dialog box, select the new EC2 instance created at step no. 6 from the Instance dropdown list and then click Associate to attach the EIP.   8.        Now it’s safe to terminate the old EC2 instance in order to stop incurring charges for it. To shut down the instance, perform the following:   a.        In the navigation panel, under INSTANCES section, select Instances.   b.        Select the EC2 instance that you want to terminate.   c.        Click the Actions dropdown button from the dashboard top menu, select Instance State and click Terminate.   d.        In the Terminate Instances confirmation box, review the instance details then click Yes, Terminate.       "
   },
   {
+    "checked": "",
     "name": "AWS:EC2RI-001",
     "cloud": "AWS",
     "risk": "Medium",
@@ -322,6 +345,7 @@
     "RemediationSteps": "1.\tSign in to the AWS Management Console.   2.\tNavigate to EC2 dashboard at https://console.aws.amazon.com/ec2/.   3.\tIn the left navigation panel, under INSTANCES section, choose Reserved Instances.   4.\tSelect the EC2 Reserved Instance that you want to renew and note its configuration attributes (i.e. OS platform, instance type, tenancy and offering class).   5.\tClick Purchase Reserved Instances button from the dashboard top menu to start the purchasing process.   6.\tOn the Purchase Reserved Instances page, specify the following RI offering details:   a.\tFrom Platform dropdown menu, select the OS platform (e.g. Linux/UNIX) used by the EC2 Reserved Instance that you want to renew.   b.\tFrom Instance Type dropdown list, choose the necessary instance type (e.g. m3.medium).   c.\tFrom Tenancy dropdown menu, select the EC2 Reserved Instance tenancy (e.g. default).   d.\tFrom Term dropdown menu, select the length of time for the new reservation based on your needs.   e.\tFrom Offering Class dropdown menu, choose Standard.   f.\tAnd from Payment Option dropdown menu, select the payment type that you want to use for this reservation (e.g. No Upfront).   g.\tClick Search to seek for EC2 Reserved Instances that match the provided criteria.   h.\tOnce the query results are returned, choose the preferred offering and click Add to Cart.   i.\tClick View Cart to view your cart before purchasing the selected RI offering.   j.\tReview the shopping cart details then click Purchase to complete your purchase.   k.\tOnce the order confirmation message appears, click Close to return to the EC2 dashboard. The RI order processing may take few minutes as the instance status will change to from pending-payment to active.   7.\tRepeat steps no. 4 - 6 to renew (repurchase) other EC2 Reserved Instances that are about to expire, available in the current region.   8.\tChange the AWS region from the navigation bar and repeat the process for other regions.   "
   },
   {
+    "checked": "",
     "name": "AWS:EC2RI-028",
     "cloud": "AWS",
     "risk": "High",
@@ -336,6 +360,7 @@
     "RemediationSteps": "1. Sign in to the AWS Management Console.     2. Navigate to AWS Support Center page at https://console.aws.amazon.com/support/.     3. On Support Center page, click the Create case button to open a support case.     4. On the Create Case page, perform the following:     a. Under Regarding, select Account and Billing Support option.     b. Choose Billing from the Service dropdown list to send your request to AWS Billing and Cost Management service.     c. Select Reserved Instances from the Category dropdown list.     d. Inside the Subject box, enter a subject for your request such as \"Retry EC2 Reserved Instance pending payment\".     e. Within Description textbox, enter a small description for your request so that AWS support can evaluate properly your request.     f. Under Contact method, select a preferred contact method that AWS support team can use to respond to your request. If your need is urgent, choose Phone as contact method to request a direct phone call.     g. Click Submit to send the payment retry request for your EC2 Reserved Instance(s) to Amazon Web Services. A customer support representative will contact you shortly.  "
   },
   {
+    "checked": "",
     "name": "AWS:EC2RI-029",
     "cloud": "AWS",
     "risk": "Low",
@@ -350,6 +375,7 @@
     "RemediationSteps": "1. Sign in to the AWS Management Console.     2. Navigate to CloudTrail dashboard at https://console.aws.amazon.com/cloudtrail/.     3. In the left navigation panel, select Trails.     4. Under Name column, select the trail name that you need to examine, available in the same AWS region with the identified EC2 RI purchases.     5. Within Storage location section check the name of the S3 bucket used to store the trail log data.     6. Now navigate to S3 dashboard at https://console.aws.amazon.com/s3/.     7. Select the S3 bucket used for CloudTrail logging and use the date/time bucket name format (e.g. cloudtrail-logging-bucket/AWSLogs/123456789012/CloudTrail/us-east-1/2017/03/08) to open the right log file for analysis.     8. Based on the log file name (i.e. 123456789012_CloudTrail_us-east-1_20170308T1830Z_65ZWtvmCq5cuBxyOZ.json.gz), identify the CloudTrail log file that contains the API activity recorded on the same date as the unwanted EC2 RI purchase request, click the Actions dropdown button from the dashboard top menu and select Open to download and open the log file in your browser.     9. Once the right CloudTrail log file is opened, search for the following attributes in order to identify the necessary log record:     a. \"eventSource\":\"ec2.amazonaws.com\" – for the name of the AWS service used to place the RI purchase request.     b. \"eventName\":\"PurchaseReservedInstancesOffering\" – for the name of the AWS API action/command used to place the RI purchase request.     c. \"eventTime\":\"2017-03-08T18:30:27.352Z\" – for the date/time when the EC2 RI purchase request was placed.          10. Identify the right CloudTrail log entry (record) based on the attributes listed at the previous step and verify the \"userIdentity\" attribute value to determine your unwanted EC2 RI purchase request origin and context.          11. Repeat steps no. 7 – 10 to verify the request origin and context for other unwanted EC2 Reserved Instance (RI) purchases placed in the selected region.          12. Change the AWS region from the navigation bar and repeat the entire process for other regions."
   },
   {
+    "checked": "",
     "name": "AWS:EC2RI-030",
     "cloud": "AWS",
     "risk": "High",
@@ -364,6 +390,7 @@
     "RemediationSteps": "1. Sign in to the AWS Management Console.     2. Navigate to EC2 dashboard at https://console.aws.amazon.com/ec2/.     3. In the navigation panel, under INSTANCES section, choose Reserved Instances.     4. If this is the first time when you are listing AWS EC2 RIs for sale, click the Actions dropdown button from the dashboard top menu and select Sell Reserved Instances option, otherwise skip to step no. 10.     5. Inside Sell Your Reserved Instance dialog box, click Register to initiate the registration wizard.     6. On Account Information page, provide a name for the seller in the Business Name box then click Continue.     7. On Add Bank Account page, register a U.S. bank account as the deposit of your sales by providing the bank account number, account holder name and the necessary routing number. Once your bank account information is validated, click Continue.     8. On the Confirmation page click Continue finish the registration wizard.     9. Go back to the navigation panel and under INSTANCES section click Reserved Instances.     10. Select the AWS EC2 Reserved Instance that you want to sell (see Audit section part I to identify the right EC2 resource).     11. Click the Actions dropdown button from the dashboard top menu and select Sell Reserved Instances.     12In the Sell Your Reserved Instance dialog box, perform the following actions:     a. Click Get Started to start listing your selected Reserved Instance.     b. Within Configure Your Reserved Instance Listing section, set the number of Reserved instances you would like to sell and the upfront price for each one, then click Continue.     c. In the Confirm Your Reserved Instance Listing section, review the RI listing details then click List Reserved Instances to list your instances on Amazon EC2 Reserved Instance Marketplace. Click Close to return to the EC2 dashboard.          13. Repeat steps no. 10 - 12 to list for sale other unneeded EC2 Reserved Instances, that have been purchased in the current AWS region and account or within any other member (linked) accounts available in your AWS Organization (if you are using one).          14Change the AWS region from the navigation bar and repeat the remediation process for other regions.   "
   },
   {
+    "checked": "",
     "name": "AWS:EC2RI-031",
     "cloud": "AWS",
     "risk": "High",
@@ -378,6 +405,7 @@
     "RemediationSteps": "1. Sign in to the AWS Management Console.     2. Navigate to EC2 dashboard at https://console.aws.amazon.com/ec2/.     3. In the left navigation panel, under INSTANCES section, choose Reserved Instances.     4. Select the EC2 Reserved Instance that you want to renew and note its configuration attributes (i.e. OS platform, instance type, tenancy and offering class).     5. Click Purchase Reserved Instances button from the dashboard top menu to start the purchasing process.     6. On the Purchase Reserved Instances page, specify the following RI offering details:     a. From Platform dropdown menu, select the OS platform (e.g. Linux/UNIX) used by the EC2 Reserved Instance that you want to renew.     b. From Instance Type dropdown list, choose the necessary instance type (e.g. m3.medium).     c. From Tenancy dropdown menu, select the EC2 Reserved Instance tenancy (e.g. default).     d. From Term dropdown menu, select the length of time for the new reservation based on your needs.     e. From Offering Class dropdown menu, choose Standard.     f. And from Payment Option dropdown menu, select the payment type that you want to use for this reservation (e.g. No Upfront).     g. Click Search to seek for EC2 Reserved Instances that match the provided criteria.     h. Once the query results are returned, choose the preferred offering and click Add to Cart.     i. Click View Cart to view your cart before purchasing the selected RI offering.     j. Review the shopping cart details then click Purchase to complete your purchase.     k. Once the order confirmation message appears, click Close to return to the EC2 dashboard. The RI order processing may take few minutes as the instance status will change to from pending-payment to active.          7. Repeat steps no. 4 - 6 to renew (repurchase) other EC2 Reserved Instances that are about to expire, available in the current region.          8. Change the AWS region from the navigation bar and repeat the process for other regions."
   },
   {
+    "checked": "",
     "name": "AWS:EC2RI-032",
     "cloud": "AWS",
     "risk": "High",
@@ -392,6 +420,7 @@
     "RemediationSteps": "1. Sign in to the AWS Management Console.     2. Navigate to AWS Support Center page at https://console.aws.amazon.com/support/.     3. On Support Center page, click Create case to initiate the process.     4. On the Create Case page, perform the following:          a. Under Regarding, select Account and Billing Support option.     b. Choose Billing from the Service dropdown list to send your request to AWS Billing and Cost Management service.     c. Select Reserved Instances from the Category dropdown list.     d. Inside the Subject box, enter a subject for your request such as \"Retry failed EC2 Reserved Instance payment\".     e. Within Description textbox, enter a small description for your request so that AWS support can evaluate your request accordingly.     f. Under Contact method, select a preferred contact method that AWS support team can use to respond to your request. If your need is urgent, choose Phone as contact method to request a direct phone call.     g. Click Submit to send the payment retry request for your EC2 Reserved Instance(s) to AWS. A customer support representative will contact you shortly."
   },
   {
+    "checked": "",
     "name": "AWS:NSG-001",
     "cloud": "AWS",
     "service": "EC2:SecurityGroups",
@@ -406,6 +435,7 @@
     "RemediationSteps": "Perform the following to implement the prescribed state:              1. Login to the AWS Management Console at https://console.aws.amazon.com/vpc/home       2. In the left pane, click Security Groups       3. For each security group, perform the following:       1. Select the security group       2. Click the Inbound Rules tab       3. Identify the rules to be removed       4. Click the x in the Remove column       5. Click Save       "
   },
   {
+    "checked": "",
     "name": "AWS:NSG-002",
     "cloud": "AWS",
     "risk": "High",
@@ -420,6 +450,7 @@
     "RemediationSteps": "Perform the following to implement the prescribed state:              1. Login to the AWS Management Console at https://console.aws.amazon.com/vpc/home       2. In the left pane, click Security Groups       3. For each security group, perform the following:       1. Select the security group       2. Click the Inbound Rules tab       3. Identify the rules to be removed       4. Click the x in the Remove column       5. Click Save       "
   },
   {
+    "checked": "",
     "name": "AWS:NSG-003",
     "risk": "High",
     "cloud": "AWS",
@@ -434,6 +465,7 @@
     "RemediationSteps": "\"Perform the following to determine if the account is configured as prescribed:       1. Login to the AWS Management Console at https://console.aws.amazon.com/vpc/home       2. In the left pane, click Security Groups       3. For each security group, perform the following:       1. Select the default security group       2. Click the Inbound Rules tab       3. Ensure no rule exist       4. Click the Outbound Rules tab       5. Ensure no rules exist              Remediation:              Perform the following to implement the prescribed state:       1. Identify AWS resources that exist within the default security group       2. Create a set of least privilege security groups for those resources       3. Place the resources in those security groups       4. Remove the resources noted in #1 from the default security group\"       "
   },
   {
+    "checked": "",
     "name": "AWS:NSG-004",
     "cloud": "AWS",
     "risk": "High",
@@ -448,6 +480,7 @@
     "RemediationSteps": "1. Sign in to the AWS Management Console.        2. Navigate to EC2 dashboard at https://console.aws.amazon.com/ec2/.          3. In the navigation panel, under NETWORK & SECURITY section, choose Security Groups.          4. Select the appropriate security group (see Audit section to identify the right one(s)).          5. Select the Inbound tab from the dashboard bottom panel and click the Edit button.          6. In the Edit inbound rules dialog box, change the traffic Source for any inbound rules that allow unrestricted access through TCP port 25 by performing one of the following actions:     - Select My IP from the Source dropdown list to allow inbound traffic only from your machine (from your IP address).     - Select Custom from the Source dropdown list and enter one of the following options based on your access requirements:          a. The static IP/Elastic IP address of the permitted host with the suffix set to /32, e.g. 54.164.53.56/32.     b. The IP address range of the permitted hosts in CIDR notation, for example 54.164.53.56/24.     c. The name or ID of another security group available in the same AWS region.          7. Click Save to apply the changes.          8. Repeat steps no. 4 – 7 to update other EC2 security groups that allow unrestricted SMTP access.          9. Change the AWS region from the navigation bar and repeat the process for other regions.       "
   },
   {
+    "checked": "",
     "name": "AWS:NSG-005",
     "cloud": "AWS",
     "risk": "High",
@@ -462,6 +495,7 @@
     "RemediationSteps": "1. Sign in to the AWS Management Console.        2. Navigate to EC2 dashboard at https://console.aws.amazon.com/ec2/.          3. In the navigation panel, under NETWORK & SECURITY section, choose Security Groups.          4. Select the appropriate security group (see Audit section to identify the right one(s)).          5. Select the Inbound tab from the dashboard bottom panel and click the Edit button.          6. In the Edit inbound rules dialog box, change the traffic Source for any inbound rules that allow unrestricted access through TCP port 3306 by performing one of the following actions:          - Select My IP from the Source dropdown list to allow inbound traffic only from your machine (from your IP address).     - Select Custom from the Source dropdown list and enter one of the following options based on your access requirements:          a. The static IP/Elastic IP address of the permitted host with the suffix set to /32, e.g. 54.164.53.205/32.     b. The static IP/Elastic IP address of the permitted host with the suffix set to /32, e.g. 54.164.53.205/32.     c. The IP address range of the permitted hosts in CIDR notation, for example 54.164.53.205/24.     d. The name or ID of another security group available in the same AWS region.          7. Click Save to apply the changes.          8. Repeat steps no. 4 – 7 to update other EC2 security groups that allow unrestricted MySQL access.          9. Change the AWS region from the navigation bar and repeat the process for other regions.       "
   },
   {
+    "checked": "",
     "name": "AWS:NSG-006",
     "cloud": "AWS",
     "risk": "High",
@@ -476,6 +510,7 @@
     "RemediationSteps": "\"1. Sign in to the AWS Management Console.        2. Navigate to EC2 dashboard at https://console.aws.amazon.com/ec2/.          3. In the navigation panel, under NETWORK & SECURITY section, choose Security Groups.          4. Select the appropriate security group (see Audit section to identify the right one(s)).          5. Select the Inbound tab from the dashboard bottom panel and click the Edit button.          6. In the Edit inbound rules dialog box, change the traffic Source for any inbound rules that allow unrestricted access through TCP ports 20 and 21 by performing one of the following actions:          - Select My IP from the Source dropdown list to allow inbound traffic only from your machine (from your IP address).     - Select Custom from the Source dropdown list and enter one of the following options based on your access requirements:          a. The static IP/Elastic IP address of the permitted host with the suffix set to /32, e.g. 54.164.53.214/32.     b. The IP address range of the permitted hosts in CIDR notation, for example 54.164.53.214/24.     c. The name or ID of another security group available in the same AWS region.          7. Click Save to apply the changes.          8. Repeat steps no. 4 – 7 to update other EC2 security groups that allow unrestricted FTP access.          9. Change the AWS region from the navigation bar and repeat the process for other regions.\"       "
   },
   {
+    "checked": "",
     "name": "AWS:EBS-001",
     "cloud": "AWS",
     "service": "EC2:Volume",
@@ -490,6 +525,7 @@
     "RemediationSteps": "Encryption for a new EBS Volume       1. From within the AWS Management Console, select EC2       2. Under ‘Elastic Block Store’ select ‘Volumes’       3. Select ‘Create Volume’       4. Enter the required configuration for your Volume       5. Select the checkbox for ‘Encrypt this volume’       6. Select the KMS Customer Master Key (CMK) to be used under ‘Master Key’       7. Select ‘Create Volume’       "
   },
   {
+    "checked": "",
     "name": "AWS:EBS-007",
     "cloud": "AWS",
     "risk": "medium",
@@ -504,6 +540,7 @@
     "RemediationSteps": "To fix this issue and ensure that EBS volume are encrypted with CMK, please follow these steps:                                                  1)Navigate to EC2 dashboard at https://console.aws.amazon.com/ec2/.                         2)In the navigation panel, under Elastic Block Store, click Volumes and select your EBS volume.                         3)Click the Actions dropdown button from the dashboard top menu and select Create p.                         4)In the Create Snapshot dialog box, provide a name and a description for the snapshot (optional) and click Create.                         5)In the navigation panel, under Elastic Block Store, click Snapshots.                         6)Select your newly created EBS snapshot.                         7)Click the Actions dropdown button from the dashboard top menu and select Copy.                         8)If the source volume is not encrypted, in the Copy Snapshot dialog box, select Encrypt this snapshot. Once the feature is enabled, select your new CMK customer-managed key from the Master Key dropdown list and click Copy.                         9)If the source volume is encrypted with a default (aws/ebs), in the Copy Snapshot dialog box, under Master Key select your CMK customer-managed key, click Copy.                         10)Select the new (copied) EBS snapshot.                         11)Click the Actions dropdown button from the dashboard top menu and select Create Volume.                         12)In the Create Volume dialog box, review the volume configuration details and click Create.                         13)Click the Actions dropdown button from the dashboard top menu and select Detach Volume.                         14)In the Detach Volume dialog box click Yes, Detach.                         15)Go back to the navigation panel and click Volumes.                         16)Select the original (source) EBS volume.                         17)Select the newly created EBS volume (encrypted with the new customer-managed key).                         18)Click the Actions dropdown button from the top menu and select Attach Volume.                         19)In the Attach Volume dialog box enter your EC2 instance ID and the device name for attachment, then click Attach.                         20)Select the Description tab from the bottom panel and make sure the new EBS volume use your own CMK customer-managed                         "
   },
   {
+    "checked": "",
     "name": "AWS:ELB-001",
     "cloud": "AWS",
     "risk": "Medium",
@@ -518,6 +555,7 @@
     "RemediationSteps": "To enable access logs for your load balancer using the console:                      1) Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/.                      2) On the navigation pane, under LOAD BALANCING, choose Load Balancers.                      3) Select your load balancer.                      4) On the Description tab, choose Configure Access Logs.                      5) On the Configure Access Logs page, do the following:                      6) Choose Enable access logs.                      7) Leave Interval as the default, 60 minutes.                      8) For S3 location, type the name of your S3 bucket, including the prefix (for example, my-loadbalancer-logs/my-app). You can specify the name of an existing bucket or a name for a new bucket.                      9) (Optional) If the bucket does not exist, choose Create this location for me. You must specify a name that is unique across all existing bucket names in Amazon S3 and follows the DNS naming conventions. For more information, see Rules for Bucket Naming in the Amazon Simple Storage Service Developer Guide.                      10) Choose Save.        "
   },
   {
+    "checked": "",
     "name": "AWS:ELB-012",
     "cloud": "AWS",
     "risk": "High",
@@ -532,6 +570,7 @@
     "RemediationSteps": "To fix this issue, ensure that ELB SSL Certificate is attached please do the following steps:                         1)Login to the AWS Management Console.                         2)Navigate to AWS ACM (Amazon certificate Manager)                         3)Create an ACM Certificate which can be attached to an ELB                         4)Navigate to the EC2 dashboard at https://console.aws.amazon.com/ec2/.                         5)In the navigation panel, under LOAD BALANCING, click Load Balancers.                         6)Select the Elastic Load Balancer that you want to examine.                         7)Select the Listeners tab from the bottom panel and click the Edit button under the available listener(s).                         8)In the Edit listeners dialog box, click Add to add a new entry.                         9)In the Load Balancer Protocol dropdown list, select HTTPS (Secure HTTP).                         10)Under the Cipher column, click Change and make sure the latest Predefined Security Policy is selected. If you need to use a custom policy, select Custom Security Policy and configure your own policy. If you apply any changes in this section click Save, otherwise click Cancel to return to the Edit listeners dialog box.                         11)Under the SSL Certificate column, click Change and select one of the following options:                         12)Choose an existing certificate from AWS Certificate Manager (ACM) - to use an existing SSL certificate purchased via AWS Certificate Manager. If you haven’t purchased any SSL certificates you can click Request a new ACM certificate link and AWS will redirect your request to the ACM dashboard where you can buy the certificate.                                   "
   },
   {
+    "checked": "",
     "name": "AWS:ELB-013",
     "cloud": "AWS",
     "risk": "High",
@@ -546,6 +585,7 @@
     "RemediationSteps": "To fix this issue and ensure that TLS 1.1 or greater security protocol is in use, please do the following steps:                         1)Login to the AWS Management Console.                         2)Navigate to EC2 dashboard                         3)In the navigation panel, under Load balancing, click Load Balancers.                         4)Select your Elastic Load Balancer.                         5)Select the Listeners tab from the bottom panel.                         6)In the Cipher column of the HTTPS listener click Change:                         7)In the Select a Cipher dialog box, select one of the following options configurations:                         8)Predefined Security Policy:                           -Select the latest predefined security policy from the list named ELBSecurityPolicy-TLS-1-2-2017-01 or ELBSecurityPolicy-TLS-1-1-2017-01 or ELBSecurityPolicy-2016-08 and then click Save. The selected predefined policy does NOT include the Protocol-SSLv2, Protocol-SSLv3, and Protocol-TLSv1 unsafe protocols.                         9)Custom Security Policy:                           -Uncheck Protocol-SSLv2 and/or Protocol-SSLv3 and/or Protocol-TLSv1 from the SSL Protocols section & found in your SSL custom policy and then click Save.                                             "
   },
   {
+    "checked": "",
     "name": "AWS:ELB-014",
     "cloud": "AWS",
     "risk": "High",
@@ -560,6 +600,7 @@
     "RemediationSteps": "To ensure that relevant Ciphers are attached, please do the following steps:                         1)Login to the AWS Management Console:                         2)Navigate to EC2 dashboard                         3)In the navigation panel, under Load balancing, click Load Balancers.                         4)Select your Elastic Load Balancer.                         5)Select the Listeners tab from the bottom panel.                         6)In the Cipher column of the HTTPS listener click Change:                         7)In the Select a Cipher dialog box, select one of the following options configurations:                           -Predefined Security Policy:Select the latest predefined security policy from the list named \"ELBSecurityPolicy-2016-08\": and then click Save.                           -Custom Security Policy:Uncheck any insecure / deprecated ciphers from the SSL Ciphers section: found during the audit process (see Audit I.7.b.) and then click Save                           "
   },
   {
+    "checked": "",
     "name": "AWS:IAM-007",
     "cloud": "AWS",
     "risk": "High",
@@ -574,6 +615,7 @@
     "RemediationSteps": "Perform the following to enable MFA:                         1. Sign in to the AWS Management Console and open the IAM console at https://console.aws.amazon.com/iam/.                         2. In the navigation pane, choose Users.                         3. In the User Name list, choose the name of the intended MFA user.                         4. Choose the Security Credentials tab, and then choose Manage MFA Device.                         5. In the Manage MFA Device wizard, choose A virtual MFA device, and then choose Next Step.                         6. Open your virtual MFA application. (For a list of apps that you can use for hosting virtual MFA devices, see Virtual MFA Applications.) If the virtual MFA application supports multiple accounts (multiple virtual MFA devices), choose the option to create a new account (a new virtual MFA device).                         7. Determine whether the MFA app supports QR codes, and then do one of the following:                            - Use the app to scan the QR code. For example, you might choose the camera icon or choose an option similar to Scan code, and then use the device's camera to scan the code.                            - In the Manage MFA Device wizard, choose Show secret key for manual configuration, and then type the secret configuration key into your MFA application. When you are finished, the virtual MFA device starts generating one-time passwords.                         8. In the Manage MFA Device wizard, in the Authentication Code 1 box, type the one-time password that currently appears in the virtual MFA device. Wait up to 30 seconds for the device to generate a new one-time password. Then type the second one-time password into the Authentication Code 2 box. Choose Active Virtual MFA.                   "
   },
   {
+    "checked": "",
     "name": "AWS:IAM-010",
     "cloud": "AWS",
     "risk": "Low",
@@ -588,6 +630,7 @@
     "RemediationSteps": "Perform the following to set the password policy as prescribed:                         Via AWS Console                         1. Login to AWS Console (with appropriate permissions to View Identity Access                         Management Account Settings)                         2. Go to IAM Service on the AWS Console                         3. Click on Account Settings on the Left Pane                         4. Check \"Requires at least one uppercase letter\"                         5. Click \"Apply password policy\"               "
   },
   {
+    "checked": "",
     "name": "AWS:IAM-013",
     "cloud": "AWS",
     "risk": "Low",
@@ -602,6 +645,7 @@
     "RemediationSteps": "Perform the following to set the password policy as prescribed:                         1. Login to AWS Console (with appropriate permissions to View Identity Access                         Management Account Settings)                         2. Go to IAM Service on the AWS Console                         3. Click on Account Settings on the Left Pane                         4. Check \"Require at least one number\"                         5. Click \"Apply password policy\"                 "
   },
   {
+    "checked": "",
     "name": "AWS:IAM-014",
     "cloud": "AWS",
     "risk": "Low",
@@ -616,6 +660,7 @@
     "RemediationSteps": "Via AWS Console                           1. Login to AWS Console (with appropriate permissions to View Identity Access                           Management Account Settings)                           2. Go to IAM Service on the AWS Console                           3. Click on Account Settings on the Left Pane                           4. Set \"Minimum password length\" to 14 or greater.                           5. Click \"Apply password policy\"                                      "
   },
   {
+    "checked": "",
     "name": "AWS:IAM-015",
     "cloud": "AWS",
     "risk": "Medium",
@@ -630,6 +675,7 @@
     "RemediationSteps": "\"Perform the following to set the password policy as prescribed:                         Via AWS Console                         1. Login to AWS Console (with appropriate permissions to View Identity Access                         Management Account Settings)                         2. Go to IAM Service on the AWS Console                         3. Click on Account Settings on the Left Pane                         4. Check \"\"Prevent password reuse\"\"                         5. Set \"\"Number of passwords to remember\"\" is set to 24      \"     "
   },
   {
+    "checked": "",
     "name": "AWS:IAM-016",
     "cloud": "AWS",
     "risk": "Medium",
@@ -644,6 +690,7 @@
     "RemediationSteps": "Perform the following to set the password policy as prescribed:                         Via AWS Console                         1. Login to AWS Console (with appropriate permissions to View Identity Access                         Management Account Settings)                         2. Go to IAM Service on the AWS Console                         3. Click on Account Settings on the Left Pane                         4. Check \"Password policy expires passwords within 90 days or less\"                         5. Set \"Number of passwords to remember\" is set to 24                      "
   },
   {
+    "checked": "",
     "name": "AWS:IAM-020",
     "cloud": "AWS",
     "risk": "Medium",
@@ -658,6 +705,7 @@
     "RemediationSteps": "To fix this issue, please do the following steps:                              1)Sign in to the AWS Management Console.                         2)Navigate to IAM dashboard at https://console.aws.amazon.com/iam/.                         3)In the left navigation panel, choose Users.                         4)Select the IAM user that has policies attached (see Audit section) and click on the user name to access its configuration page.                         5)On the IAM user configuration page, select Permissions tab.                         6)Under Managed Policies section copy each policy identifier displayed in the Policy Name column. Once the information is copied, click the Detach Policy link for each managed policy available in order to detach the policies for the selected user. These policies will be attached later at the group level.                         7)In the left navigation panel, choose Groups.                         8)Click the Create New Group button from the dashboard top menu to create the group that will contain the IAM user.                         9)On the Set Group Name page, enter a name for the new group and click the Next Step button.                         10)On the Attach Policy page, in the Filter box, search for the policy names copied at step no. 6 and select each policy returned. Once all policies are selected, click the Next Step button.                         11)On the Review page, review the new group configuration then click the Create Group button.                         12)Click on the newly created group name to continue the process.                         13)On the group configuration page, select Users tab and click Add Users to Group button to add the necessary user.                         14)On the Add Users to Group page, select the IAM user specified at step no. 4 and click the Add Users button. Once added the user name will be listed in the Users tab.                         15)Click on the user added at the previous step to access its configuration page. Inside Managed Policies section, AWS should list all the policies attached to the IAM group, inherited automatically by the IAM user.                           "
   },
   {
+    "checked": "",
     "name": "AWS:IAM-021",
     "cloud": "AWS",
     "risk": "Medium",
@@ -672,6 +720,7 @@
     "RemediationSteps": "1) Sign in to the AWS Management Console.   2) Navigate to your AWS account settings page at https://console.aws.amazon.com/billing/home?#/account/.   3) Scroll down to Configure Security Challenge Questions section and click the Edit link:      to display the security challenge questions configuration form.   4) Select three different questions made available by Amazon and provide the appropriate answers to the selected questions, e.g.   5) To make sure you won't lose them, write down and store the answers in a secure but accessible location.   6) Click the Update button to save the changes.                   "
   },
   {
+    "checked": "",
     "name": "AWS:KMS-004",
     "cloud": "AWS",
     "service": "KMS",
@@ -686,6 +735,7 @@
     "RemediationSteps": "\"1. Sign into the AWS Management Console.    2. Navigate to IAM dashboard at https://console.aws.amazon.com/iam/.      3. In the left navigation panel, click Encryption Keys.      4. Select the appropriate AWS region from the Filter menu:      5. Under Status column, check for any keys scheduled for deletion with the current status set to Pending Deletion.      6. Select the key, click the Key Actions button from the dashboard top menu and select Cancel key deletion:  Once the scheduled delete action is cancelled, the key status moves from 'Pending Deletion' to 'Disabled'.      7. Repeat step no. 4, 5 and 6 for all AWS regions.   \""
   },
   {
+    "checked": "",
     "name": "AWS:KMS-005",
     "cloud": "AWS",
     "service": "KMS",
@@ -700,6 +750,7 @@
     "RemediationSteps": "\"1. Login to the AWS Management Console.    2. Navigate to IAM dashboard at https://console.aws.amazon.com/iam/.      3. In the left navigation panel, click Encryption Keys.      4. Click on the KMS key that you want to reconfigure (see Audit section part I to identify the right resource).      5. On the selected key configuration page, inside the Key Policy section, perform the following action:   Add a Condition clause such as \"\"Condition': {\"\"StringEquals\"\": { \"\"kms:CallerAccount\"\": \"\"123456789012\"\" } } to the existing policy statement   6. Click Save Changes to apply the policy changes.      7. Repeat steps no. 4 - 6 to update the access policy for other AWS KMS master keys available in the current region in order to block anonymous access.      8. Change the AWS region from the navigation bar and repeat the process for other regions.   \""
   },
   {
+    "checked": "",
     "name": "AWS:LAMBDA-001",
     "cloud": "AWS",
     "risk": "high",
@@ -714,6 +765,7 @@
     "RemediationSteps": "\"1) Login to the AWS Management Console.    2) Navigate to Lambda dashboard at https://console.aws.amazon.com/lambda/.      3) In the navigation panel, under AWS Lambda section, choose Functions.      4) Choose the Lambda function that you want to examine then click on the function name to access its configuration page.      5) Select the Triggers tab then click View function policy to expand the panel with the policy used to manage the function invocation permissions.      6) Inside the Lambda function policy box, check the Principal element value. If the Principal element has one of the following values: \"\"*\"\" or { \"\"AWS\"\": \"\"*\"\" } and the function policy is not using any Condition clauses such as 'Condition': {'StringEquals': { 'AWS:SourceAccount': '<aws_account_number>' } } to filter the access, the selected Amazon Lambda function is exposed to anonymous access.      7) Repeat steps no. 4 - 6 to verify the resource-based policy for other Amazon Lambda functions created within the current region for public access.      8) Change the AWS region from the navigation bar and repeat the process for the other regions.      \""
   },
   {
+    "checked": "",
     "name": "AWS:LAMBDA-002",
     "cloud": "AWS",
     "risk": "high",
@@ -728,6 +780,7 @@
     "RemediationSteps": "\"1. Login to the AWS Management Console.    2. Navigate to Lambda dashboard at https://console.aws.amazon.com/lambda/.      3. In the navigation panel, under AWS Lambda section, choose Functions.      4. Choose the Lambda function that you want to examine then click on the function name to access its configuration page.      5. Select the Configuration tab then click Execution role to expand the panel with IAM role that defines the permissions for the selected function.      6. Inside the Execution role panel, perform one of the following actions:      - To apply an existing execution role, select Choose an existing role from the first dropdown list, then select the name of the existing IAM role from the second dropdown list. The chosen IAM role must adhere to the Principle of Least Privilege and provide only the access permissions required by the selected function.   - To apply a new execution role, built using Lambda policy templates, select Create new role from template(s) from the first dropdown list, enter a name for the IAM role within Role name box and select one or more templates from the Policy templates dropdown list.   - To apply a custom execution role, select Create a custom role from the dropdown list to redirect you to the AWS Lambda requires access to your resources page where you can create your own IAM execution role for the selected Lambda function. Once your new custom role is defined, click Allow to add the custom IAM role to the current function configuration.      7. Click the Save button from the dashboard top menu to update the function configuration and apply the appropriate IAM execution role.      8. Repeat steps no. 4 -7 to change the IAM execution role for other Amazon Lambda functions created in the current AWS region.      9. Change the AWS region from the navigation bar and repeat the entire process for the other regions.\""
   },
   {
+    "checked": "",
     "name": "AWS:LAMBDA-003",
     "cloud": "AWS",
     "risk": "high",
@@ -742,6 +795,7 @@
     "RemediationSteps": "\"1. Login to the AWS Management Console.    2. Navigate to Lambda dashboard at https://console.aws.amazon.com/lambda/.      3. In the navigation panel, under AWS Lambda section, choose Functions.      4. Choose the Lambda function that you want to reconfigure then click on the function name to access its configuration page.      5. Select the Configuration tab then click Execution role to expand the panel with IAM role that defines the permissions for the selected function.      6. Within Execution role section, perform one of the following actions:      - To apply an existing execution role, select Choose an existing role from the first dropdown list, then select the name of the existing IAM role from the second dropdown list. The chosen IAM role cannot be associated with another Lambda function and must adhere to the Principle of Least Privilege by providing only the access permissions required by the selected function.   - To apply a new execution role, built using Lambda policy templates, select Create new role from template(s) from the first dropdown list, enter a unique name for the IAM role within Role name box and select one of more templates from the Policy templates dropdown list.   - To apply a custom execution role, select Create a custom role from the dropdown list to redirect you to the AWS Lambda requires access to your resources page where you can create your own IAM execution role for the selected Lambda function. Once your new custom role is defined, click Allow to add the custom IAM role to the current function configuration.      7. Click the Save button from the dashboard top menu to update the function configuration and apply the individual IAM execution role.      8. Go back to the AWS Lambda Functions page and repeat steps no. 4 – 7 for the rest of the Amazon functions available in the selected AWS region. Make sure each Lambda function uses its own individual IAM execution role with the right set of permissions.      9. Change the AWS region from the navigation bar and repeat the entire process for the other regions.\""
   },
   {
+    "checked": "",
     "name": "AWS:RDS-002",
     "risk": "Medium",
     "cloud": "AWS",
@@ -756,6 +810,7 @@
     "RemediationSteps": "To encrypt your RDS with Customer Managed Keys, please do the following steps:      1)\tLogin to the AWS Management Console.     2)\tNow an existing CMK must be applied to encrypt/decrypt the RDS instance data. In order to start the process, navigate to the RDS dashboard at https://console.aws.amazon.com/rds/.     3)\tIn the navigation panel, under RDS Dashboard, click Instances.     4)\tSelect the RDS database instance that you want to encrypt.     5)\tClick Instance Actions button from the dashboard top menu and select Take Snapshot.     6)\tOn the Take DB Snapshot page, enter a name for the instance snapshot in the Snapshot Name field and click Take Snapshot (the backup process may take few minutes and depends on your instance storage size).     7)\tSelect the new created snapshot and click the Copy Snapshot button from the dashboard top menu.     8)\tOn the Make Copy of DB Snapshot page     9)\tClick Copy Snapshot to create an encrypted copy of the selected instance snapshot.     10)\tSelect the new snapshot copy and click Restore Snapshot button from the dashboard top menu. This will restore the encrypted snapshot to a new database instance.     11)\tOn the Restore DB Instance page, enter a unique name for the new database instance in the DB Instance Identifier* field.     12)\tReview the instance configuration details and click Restore DB Instance.     "
   },
   {
+    "checked": "",
     "name": "AWS:RDS-004",
     "cloud": "AWS",
     "risk": "High",
@@ -770,6 +825,7 @@
     "RemediationSteps": "To Fix This Issue, Please follow these steps:      1)\tLogin to the AWS Management Console.     2)\tNavigate to RDS dashboard at https://console.aws.amazon.com/rds/.     3)\tIn the navigation panel, under RDS Dashboard, click Instances.     4)\tSelect the RDS instance that you want to update.     5)\tClick Instance Actions button from the dashboard top menu and select Modify.     6)\tOn the Modify DB Instance: < instance identifier > page, under Network & Security section, check No next to Publicly Accessible to disable the flag and restrict public access.     7)\tAt the bottom of the page, check Apply Immediately to apply the changes immediately.     8)\tClick Continue. "
   },
   {
+    "checked": "",
     "name": "AWS:RDS-005",
     "cloud": "AWS",
     "service": "RDS",
@@ -784,6 +840,7 @@
     "RemediationSteps": "To subscribe to RDS event notification          1. Sign in to the AWS Management Console and open the Amazon RDS console athttps://console.aws.amazon.com/rds/.     2. In navigation pane, choose Event Subscriptions.     3. In the Event subscriptions pane, choose Create event subscription.     4. In the Create event subscription dialog box, do the following:     a. Type a name for the event notification subscription for Name.     b. For Send notifications to, choose an existing Amazon SNS Amazon Resource Name (ARN) for an Amazon SNS topic, or choose create topic to enter the name of a topic and a list of recipients.     c. For Source type, choose a source type.     d. Choose Yes to enable the subscription. If you want to create the subscription but to not have notifications sent yet, choose No.     e. Depending on the source type you selected, choose the event categories and sources that you want to receive event notifications for.     f. Choose Create.     "
   },
   {
+    "checked": "",
     "name": "AWS:RDS-006",
     "cloud": "AWS",
     "risk": "High",
@@ -798,6 +855,7 @@
     "RemediationSteps": "In AWS Management Console.      1-        Navigate to RDS dashboard at https://console.aws.amazon.com/rds/.     2-        Click on the RDS Dashboard, the select Instances.     3-        Select the RDS instance that you want to examine.     4-        Select the Instance Actions button from the dashboard and select See Details.     5-        Under Availability and Durability section, search for the Automated Backups status:          Note: If the current status is set to Disabled, then the RDS service will not snapshots for the selected instance or backups.     "
   },
   {
+    "checked": "",
     "name": "AWS:RDS-007",
     "cloud": "AWS",
     "service": "RDS",
@@ -812,6 +870,7 @@
     "RemediationSteps": "To fix this issue, you need to go into AWS console and enable RDS event subscription for the security group:      1.\tSign in to the AWS Management Console and open the Amazon RDS console athttps://console.aws.amazon.com/rds/.     2.\tSelect Event Subscriptions from the left navigation menu.     3.\tSelect Create Event Subscription.     4.\tEnter the appropriate information into the following fields: Name and Send notifications to.     5.\tSelect the Instances from the Source Type dropdown.     6.\tMake sure you have subscribed your DB to all events.     7.\tClick Create.     "
   },
   {
+    "checked": "",
     "name": "AWS:RDS-009",
     "cloud": "AWS",
     "risk": "High",
@@ -826,6 +885,7 @@
     "RemediationSteps": "To Fix This Issue, Please follow these steps:      1)        Login to the AWS Management Console.     2)        Go to AWS RDS console: https://console.aws.amazon.com/rds     3)        Go to Instances tab, select the DB instance that you want to modify.     4)        Select Instance Actions dropdown, and select Modify.     5)        Under Instance specifications section, choose Yes for Multi-AZ deployment.     6)        Select continue, and Modify DB Instance."
   },
   {
+    "checked": "",
     "name": "AWS:RDS-010",
     "risk": "High",
     "cloud": "AWS",
@@ -840,6 +900,7 @@
     "RemediationSteps": "To Fix This Issue, Please follow these steps:     1)\tLogin to the AWS Management Console.     2)\tGo to AWS RDS console: https://console.aws.amazon.com/rds     3)\tGo to Instances tab, select the DB instance that you want to modify.     4)\tSelect Instance Actions dropdown, and select Modify.     5)\tUnder Instance specifications section, choose Yes for create Read Replicas.     6)\tSelect continue, and Modify DB Instance.      "
   },
   {
+    "checked": "",
     "name": "AWS:RDS-012",
     "cloud": "AWS",
     "risk": "High",
@@ -854,6 +915,7 @@
     "RemediationSteps": "To Fix this Issue, Please follow these steps:              1) Sign in to AWS Management Console.     2) Navigate to RDS dashboard at https://console.aws.amazon.com/rds/.     3 In the left navigation panel, under Amazon RDS, click Parameter groups.     4) Select the RDS parameter group that you want to update (see Audit section part I to identify the right resource).     5) On the Parameter listing page, enter rds.force_ssl parameter name in the Filter parameters search box and press Enter.     6) Select the returned parameter then click the Edit parameters button from the dashboard top-right menu.     7) Select 1 from the Value dropdown list available next to the parameter name, then click Save changes to apply the changes.     8) Once the required parameter group is successfully updated and the rds.force_ssl parameter value is set to 1, go back to the left navigation panel and select Instances.     9) Select the SQL Server database instance that you want to reboot., then click Instance Actions button from the dashboard top menu and select Reboot.     10) Inside Reboot DB instance confirmation box, click Reboot to confirm the action. The RDS instance status should change to Rebooting, then back to Available.     11) Repeat steps no. 4 – 10 for each SQL Server database instance that doesn't have Transport Encryption feature enabled, available in the current region.     12) Change the AWS region from the navigation bar and repeat the process for other regions."
   },
   {
+    "checked": "",
     "name": "AWS:S3-001",
     "cloud": "AWS",
     "remediatable": true,
@@ -869,6 +931,7 @@
     "RemediationSteps": "To fix this issue and enable default encryption, follow these steps:        1) Please Log into your S3 console       2) Select on the bucket name.       3) Click Properties.       4) Select Default Encryption.       5) Select AES-256 or AWS-KMS       6) If using AWS-KMS, then select a KMS key.       7) Click Save."
   },
   {
+    "checked": "",
     "name": "AWS:S3-005",
     "cloud": "AWS",
     "risk": "Medium",
@@ -883,6 +946,7 @@
     "RemediationSteps": "Best practice is create least privileges and providing global access leads to increase risk of potential data loss and security exposure. Avoid setting global edit/delete/post etc."
   },
   {
+    "checked": "",
     "name": "AWS:S3-006",
     "cloud": "AWS",
     "risk": "High",
@@ -897,6 +961,7 @@
     "RemediationSteps": "To enable server access logging for an S3 bucket:      1.\tSign in to the AWS Management Console and open the Amazon S3 console at https://console.aws.amazon.com/s3/.     2.\tIn the Bucket name list, choose the name of the bucket that you want to enable server access logging for.     3.\tChoose Properties.     4.\tChoose Server access logging.     5.\tChoose Enable Logging. For Target, choose the name of the bucket that you want to receive the log record objects. The target bucket must be in the same Region as the source bucket.     6.\t(Optional) For Target prefix, type a key name prefix for log objects, so that all of the log object names begin with the same string.     7.\tChoose Save.     8.\tYou can view the logs in the target bucket. If you specified a prefix, the prefix shows as a folder in the target bucket in the console. After you enable server access logging, it might take a few hours before the logs are delivered to the target bucket. For more information about how and when logs are delivered, see Server Access Logging in the Amazon Simple Storage Service Developer Guide."
   },
   {
+    "checked": "",
     "name": "AWS:S3-007",
     "cloud": "AWS",
     "risk": "Medium",
@@ -911,6 +976,7 @@
     "RemediationSteps": "Best practice is create least privileges and providing global access leads to increase risk of potential data loss and security exposure. Avoid setting global edit/delete/post etc."
   },
   {
+    "checked": "",
     "name": "AWS:S3-008",
     "cloud": "AWS",
     "risk": "Medium",
@@ -925,6 +991,7 @@
     "RemediationSteps": "Best practice is create least privileges and providing global access leads to increase risk of potential data loss and security exposure. Avoid setting global edit/delete/post etc."
   },
   {
+    "checked": "",
     "name": "AWS:S3-009",
     "cloud": "AWS",
     "service": "S3",
@@ -939,6 +1006,7 @@
     "RemediationSteps": "Best practice is create least privileges and providing global access leads to increase risk of potential data loss and security exposure. Avoid setting global edit/delete/post etc."
   },
   {
+    "checked": "",
     "name": "AWS:S3-010",
     "cloud": "AWS",
     "risk": "Medium",
@@ -953,6 +1021,7 @@
     "RemediationSteps": "1) Sign in to the AWS Management Console.    2) Navigate to S3 dashboard at https://console.aws.amazon.com/s3/.      3) Select the S3 bucket that you want to examine and click the Properties tab from the S3 dashboard top right menu:      4) In the Properties panel, click Permissions to expand the bucket Access Control List (ACL) configuration tab and search for the grantee (predefined group) named \"Everyone\". uncheck-the-list-read-permission-applied-to-everyone.png      5) Uncheck the List permission applied to \"Everyone\":      or delete the predefined group using the x button next to the group settings:      6) Click Save to apply the new ACL configuration and remove the bucket public READ (LIST) access.      7) Repeat steps no. 3 – 6 for each publicly “LIST” accessible S3 bucket available in your AWS account."
   },
   {
+    "checked": "",
     "name": "AWS:S3-011",
     "cloud": "AWS",
     "risk": "High",
@@ -967,6 +1036,7 @@
     "RemediationSteps": "To fix this issue and enable s3 server side encryption, follow these steps:      1) Please Log into your S3 console     2) Select on the bucket name.     3) Click Properties.     4) Select Default Encryption.     5) Select AES-256 or AWS-KMS     6) If using AWS-KMS, then select a KMS key.     7) Click Save."
   },
   {
+    "checked": "",
     "name": "AWS:S3-012",
     "cloud": "AWS",
     "remediatable": true,
@@ -982,6 +1052,7 @@
     "RemediationSteps": "To Fix this Issue, Please follow these steps:      1)\tSign in to the AWS Management Console.     2)\tNavigate to S3 dashboard at https://console.aws.amazon.com/s3/.     3)\tSelect the S3 bucket that you want to encrypt (see Audit section part I to identify the right S3 resource) and click the Properties tab from the dashboard top right menu     4)\tInside the Properties tab, click Permissions to expand the bucket permissions settings panel.     5)\tClick the Edit bucket policy button to edit the bucket policy in use. If the selected bucket does not have an access policy defined yet, click Add bucket policy.     6)\tIn the Bucket Policy Editor dialog box, perform one of the following actions based on your current configuration:     7)\tIf there is no access policy currently in use, paste the following policy document in the Bucket Policy Editor box, replace the bucket name, i.e. cc-media-repo,     with the name of your own S3 bucket then click Save. This policy will restrict non-SSL S3 access to all your objects available in the selected S3 bucket     8)\tRepeat steps no. 3 - 6 to implement SSL-only access for other S3 buckets created in your AWS account.     "
   },
   {
+    "checked": "",
     "name": "AWS:S3-014",
     "cloud": "AWS",
     "service": "S3",
@@ -996,6 +1067,7 @@
     "RemediationSteps": "To Fix this Issue please follow these steps:      1.        Sign in to the AWS Management Console.     2.        Navigate to S3 dashboard at https://console.aws.amazon.com/s3/.     3.        Click on the name (link) of the S3 bucket that you want to reconfigure (see Audit section part I to identify the right resource).     4.        Select the Management tab from the S3 dashboard top menu, choose Lifecycle panel, then click Add lifecycle rule to set up a new lifecycle configuration rule.     5.        Inside Lifecycle rule dialog box, perform the following:     -        For Name and scope section, provide a unique name for your lifecycle rule in Enter a rule name box and a prefix/tag within Add filter to limit scope to prefix/tags box (e.g. app-logs). Click Next to continue the setup process.     -        For Transitions section, select Current version checkbox to add transitions for current version of S3 objects. Click + Add transition, select Transition to Standard-IA after for Object creation and set 30 for Days after object creation. Click + Add transition again, select Transition to Amazon Glacier after for Object creation and set 60 for Days after object creation. Once the necessary transitions are set, click Next to continue.     -        For Expiration section, select Current version checkbox to add expiration actions for current version of S3 objects. Select Expire current version of object checkbox and set 365 (days) for After x days from object creation. Click Next to continue.     -        For Review section, reexamine the rule configuration details then click Save to create the S3 lifecycle configuration rule.     6.        Repeat step no. 4 and 5 to define more lifecycle configuration rules for the selected Amazon S3 bucket.     7.        Repeat steps no. 3 – 6 to enable lifecycle configuration for other S3 buckets available in your AWS account.    "
   },
   {
+    "checked": "",
     "name": "AWS:S3-016",
     "cloud": "AWS",
     "remediatable": true,
@@ -1011,6 +1083,7 @@
     "RemediationSteps": "Follow these steps to enable Object Versioning:      1) Log into your AWS Console, and select the \"\"S3\"\" service.     2) Select the bucket you wish to enable versioning on, and click the \"\"Properties\"\" tab in the upper right frame.     3) Expand the \"\"Versioning\"\" option     4) Click \"\"Enable Versioning"
   },
   {
+    "checked": "",
     "name": "AWS:VPC-002",
     "cloud": "AWS",
     "risk": "High",
@@ -1025,6 +1098,7 @@
     "RemediationSteps": "Perform the following to implement the prescribed state:          1- In your AWS Console go to AWS VPC dashboard at      https://console.aws.amazon.com/vpc/.     2- You can Filter by VPC of your choice and select the one you want.     3- Select the NAT Gateways inspect and modify according to your application traffic needs.     4- Repeat for each VPC network and associated NAT gateways available in other regions. "
   },
   {
+    "checked": "",
     "name": "AZU:AD-002",
     "risk": "High",
     "cloud": "AZURE",
@@ -1039,6 +1113,7 @@
     "RemediationSteps": "1. Go to Azure Active Directory     2. Go to Users and group     3. Go to All Users     4. Click on Show drop down and select Guest users only     5. Ensure that there are no guest users listed (USER TYPE = Guest)"
   },
   {
+    "checked": "",
     "name": "AZU:ALA-001",
     "risk": "High",
     "cloud": "AZURE",
@@ -1053,6 +1128,7 @@
     "RemediationSteps": "Azure Console     1. Go to Activity log     2. Click on Export     3. Configure the setting for Log Profile     4. Click on Save\" "
   },
   {
+    "checked": "",
     "name": "AZU:ALA-002",
     "risk": "High",
     "cloud": "AZURE",
@@ -1067,6 +1143,7 @@
     "RemediationSteps": "Azure Console     1. Go to Activity log     2. Select Export     3. Set Retention (days) is set to 365 or greater     4. Select Save           "
   },
   {
+    "checked": "",
     "name": "AZU:ALA-003",
     "risk": "High",
     "cloud": "AZURE",
@@ -1081,6 +1158,7 @@
     "RemediationSteps": "1. Go to Alerts     2. Select Add activity log alert     3. Set a name, subscription, and resource group in which to store activity log alerts     4. Select Event category Administrative     5. Select Operation name Create policy assignment     6. Set a subscription and action group for alerts     7. Select Save           "
   },
   {
+    "checked": "",
     "name": "AZU:ALA-004",
     "risk": "High",
     "cloud": "AZURE",
@@ -1095,6 +1173,7 @@
     "RemediationSteps": "To remediate this alert,     In the Azure console:          Go to Alerts.     Select Add activity log alert.     Set a name, subscription, and resource group in which to store activity log alerts.     Set Event category to Administrative.     Set Operation to Update Security Policy.     Set a subscription and action group for alerts.     Select Save.           "
   },
   {
+    "checked": "",
     "name": "AZU:KV-001",
     "risk": "High",
     "cloud": "AZURE",
@@ -1109,6 +1188,7 @@
     "RemediationSteps": "1. Go to Key vaults     2. For each Key vault, click on Keys.     3. Under the Settings section, Make sure Enabled? is set to Yes     4. Set an appropriate EXPIRATION DATE on all keys.           "
   },
   {
+    "checked": "",
     "name": "AZU:KV-002",
     "risk": "High",
     "cloud": "AZURE",
@@ -1123,6 +1203,7 @@
     "RemediationSteps": "1. Go to Key vaults     2. For each Key vault, click on Secrets.     3. Under the Settings section, Make sure Enabled? is set to Yes     4. Set an appropriate EXPIRATION DATE on all secrets.           "
   },
   {
+    "checked": "",
     "name": "AZU:KV-003",
     "risk": "High",
     "cloud": "AZURE",
@@ -1137,6 +1218,7 @@
     "RemediationSteps": "Azure Portal does not have provision to update the respective configurations           "
   },
   {
+    "checked": "",
     "name": "AZU:NSG-001",
     "risk": "High",
     "cloud": "AZURE",
@@ -1151,6 +1233,7 @@
     "RemediationSteps": "Disable direct RDP access to your Azure Virtual Machines from the Internet. After direct RDP access from the Internet is disabled, you have other options you can use to access these virtual machines for remote management"
   },
   {
+    "checked": "",
     "name": "AZU:NSG-002",
     "risk": "High",
     "cloud": "AZURE",
@@ -1165,6 +1248,7 @@
     "RemediationSteps": "   Disable direct SSH access to your Azure Virtual Machines from the Internet. After direct   SSH access from the Internet is disabled"
   },
   {
+    "checked": "",
     "name": "AZU:NSG-003",
     "risk": "High",
     "cloud": "AZURE",
@@ -1179,6 +1263,7 @@
     "RemediationSteps": "     Disable direct Telnet access to your Azure Virtual Machines from the Internet. After direct Telnet access from the Internet is disabled     "
   },
   {
+    "checked": "",
     "name": "AZU:NSG-004",
     "risk": "High",
     "cloud": "AZURE",
@@ -1193,6 +1278,7 @@
     "RemediationSteps": "       Reduce the permitted IP Addresses or ranges allowed to communicate to destination hosts on TCP port 3306. We recommend utilizing the static office or home IP addresses of your employees as the permitted hosts. If you must permit global access to TCP port 3306 (MySQL).                 "
   },
   {
+    "checked": "",
     "name": "AZU:PLINK-001",
     "risk": "High",
     "cloud": "AZURE",
@@ -1207,6 +1293,7 @@
     "RemediationSteps": "     1. Login to Azure Portal using https://portal.azure.com     2. Go to Private Links     3. Associate a Vnet subnet for which you need to create private link     4. Select the resource from the resource group     5. Review and create to generate private link for selected resource in the Vnet subnet"
   },
   {
+    "checked": "",
     "name": "AZU:SA-001",
     "risk": "High",
     "cloud": "AZURE",
@@ -1221,6 +1308,7 @@
     "RemediationSteps": "       Perform the following to implement the prescribed state:       1. Go to Storage Accounts       2. For each storage account, go to Encryption under BLOB SERVICE       3. Set Storage service encryption to Enabled       "
   },
   {
+    "checked": "",
     "name": "AZU:SA-002",
     "risk": "High",
     "cloud": "AZURE",
@@ -1235,6 +1323,7 @@
     "RemediationSteps": "     1. Go to Storage Accounts     2. For each storage account, go to Encryption under FILE SERVICE     3. Set Storage service encryption to Enabled         "
   },
   {
+    "checked": "",
     "name": "AZU:SA-003",
     "risk": "High",
     "cloud": "AZURE",
@@ -1249,6 +1338,7 @@
     "RemediationSteps": "     \"To resolve this alert, ESP recommends that you edit your containers' public access level to \"private.\"     For more information, see Microsoft: Azure: Enable public read access for containers and blobs in Azure Blob storage.\"           "
   },
   {
+    "checked": "",
     "name": "AZU:SA-004",
     "risk": "High",
     "cloud": "AZURE",
@@ -1263,6 +1353,7 @@
     "RemediationSteps": "     1. Go to Storage Accounts     2. For each storage account, go to Configuration     3. Set Secure transfer required to Enabled           "
   },
   {
+    "checked": "",
     "name": "AZU:SQLDB-001",
     "risk": "High",
     "cloud": "AZURE",
@@ -1277,6 +1368,7 @@
     "RemediationSteps": "     Please login to Azure portal & follow these remediation steps:     1. Go to SQL databases     2. For each DB instance     3. Click on Transparent data encryption     4. Set Data encryption to On               "
   },
   {
+    "checked": "",
     "name": "AZU:SQLDB-002",
     "risk": "High",
     "cloud": "AZURE",
@@ -1291,6 +1383,7 @@
     "RemediationSteps": "       Please login to Azure portal & follow these remediation steps:       1. Go to SQL databases       2. For each DB instance       3. Click on Auditing & Threat Detection       4. Ensure that Auditing is set to On             "
   },
   {
+    "checked": "",
     "name": "AZU:SQLDB-003",
     "risk": "High",
     "cloud": "AZURE",
@@ -1305,6 +1398,7 @@
     "RemediationSteps": "     1. Go to SQL databases     2. For each DB instance     3. Click on Auditing & Threat Detection     4. Set Threat Detection to On             "
   },
   {
+    "checked": "",
     "name": "AZU:SQLDB-004",
     "risk": "Medium",
     "cloud": "AZURE",
@@ -1319,6 +1413,7 @@
     "RemediationSteps": "     1. Go to SQL databases     2. For each DB instance     3. Click on Auditing & Threat Detection      4. Set Threat Detection types to All     "
   },
   {
+    "checked": "",
     "name": "AZU:SQLDB-005",
     "risk": "High",
     "cloud": "AZURE",
@@ -1333,6 +1428,7 @@
     "RemediationSteps": "       1. Go to SQL databases       2. For each database, click on Auditing & Threat Detection       3. Ensure that Auditing is set to ON       4. Click on Storage details       5. Ensure that the Retention (Days) is set to 90 or above.                 "
   },
   {
+    "checked": "",
     "name": "AZU:SQLSVR-001",
     "risk": "High",
     "cloud": "AZURE",
@@ -1347,6 +1443,7 @@
     "RemediationSteps": "       1. Go to SQL servers       2. For each server instance       3. Click on Auditing & Threat Detection       4. Set Auditing to On                 "
   },
   {
+    "checked": "",
     "name": "AZU:SQLSVR-002",
     "risk": "High",
     "cloud": "AZURE",
@@ -1361,6 +1458,7 @@
     "RemediationSteps": "     1. Go to SQL servers     2. For each server instance     3. Click on Auditing & Threat Detection     4. Select Storage Details     5. Set Retention (days) setting greater than 90 days     6. Select OK     7. Select Save     "
   },
   {
+    "checked": "",
     "name": "AZU:SQLSVR-003",
     "risk": "High",
     "cloud": "AZURE",
@@ -1375,6 +1473,7 @@
     "RemediationSteps": "       1. Go to SQL servers       2. For each server instance       3. Click on Auditing & Threat Detection       4. Set Threat Detection to On                 "
   },
   {
+    "checked": "",
     "name": "AZU:SQLSVR-004",
     "risk": "High",
     "cloud": "AZURE",
@@ -1389,6 +1488,7 @@
     "RemediationSteps": "     1. Go to SQL servers     2. For each server instance     3. Click on Auditing & Threat Detection     4. Set Send alerts to as appropriate                 "
   },
   {
+    "checked": "",
     "name": "AZU:SQLSVR-005",
     "risk": "High",
     "cloud": "AZURE",
@@ -1403,6 +1503,7 @@
     "RemediationSteps": "     1. Go to SQL servers     2. For each server instance     3. Click on Auditing & Threat Detection     4. Enable Email service and co-administrators                 "
   },
   {
+    "checked": "",
     "name": "AZU:VM-001",
     "risk": "High",
     "cloud": "AZURE",
@@ -1417,6 +1518,7 @@
     "RemediationSteps": "      1. Go to Virtual machines 2. For each virtual machine, go to Settings 3. Click on Disks 4. Eable the OS disk encryption by setting it to Enabled     "
   },
   {
+    "checked": "",
     "name": "AZU:VM-002",
     "risk": "High",
     "cloud": "AZURE",
@@ -1431,6 +1533,7 @@
     "RemediationSteps": "1. Go to Virtual machines     2. For each virtual machine, go to Settings     3. Click on Disks     4. Ensure that each disk under Data disks has encryption set to Enabled           "
   },
   {
+    "checked": "",
     "name": "AZU:WEBAPPS-001",
     "risk": "high",
     "cloud": "AZURE",
@@ -1445,6 +1548,7 @@
     "RemediationSteps": "\"1. Login to Azure Portal using https://portal.azure.com     2. Go to App Services     3. Click on each App     4. Under Setting section, Click on Authentication / Authorization     5. Set App Service Authentication to On     6. Choose other parameters as per your requirement and Click on Save\""
   },
   {
+    "checked": "",
     "name": "AZU:WEBAPPS-002",
     "risk": "high",
     "cloud": "AZURE",
@@ -1458,6 +1562,7 @@
     "RemediationSteps": "\"1. Login to Azure Portal using https://portal.azure.com     2. Go to App Services     3. Click on each App     4. Under Setting section, Click on SSL settings     5. Set HTTPS Only to On under Protocol Settings section\""
   },
   {
+    "checked": "",
     "name": "AZU:WEBAPPS-003",
     "risk": "high",
     "cloud": "AZURE",
@@ -1472,6 +1577,7 @@
     "RemediationSteps": "\"1. Login to Azure Portal using https://portal.azure.com     2. Go to App Services     3. Click on each App     4. Under Setting section, Click on SSL settings     5. Set Minimum TLS Version to 1.2 under Protocol Settings section\""
   },
   {
+    "checked": "",
     "name": "AZU:WEBAPPS-004",
     "risk": "high",
     "cloud": "AZURE",
@@ -1486,6 +1592,7 @@
     "RemediationSteps": "\"1. Login to Azure Portal using https://portal.azure.com     2. Go to App Services     3. Click on each App     4. Under Setting section, Click on SSL settings     5. Set Incoming client certificates to On under Protocol Settings section\""
   },
   {
+    "checked": "",
     "name": "FBS:CF-001",
     "cloud": "GCP",
     "risk": "high",
@@ -1500,6 +1607,7 @@
     "RemediationSteps": "1. Go to Google Cloud Console.     2. Select Cloud functions on the navigation bar.     3. Select Create Function from the top bar and set a unique name.     4. Scroll down to Networking, in the Ingress settings select the following:     - Allow internal traffic only     5. Press the Create button."
   },
   {
+    "checked": "",
     "name": "FBS:CF-003",
     "cloud": "GCP",
     "risk": "medium",
@@ -1515,6 +1623,7 @@
   },
   null,
   {
+    "checked": "",
     "name": "FBS:CF-006",
     "cloud": "GCP",
     "risk": "medium",
@@ -1529,6 +1638,7 @@
     "RemediationSteps": "1. Go to Google Cloud Console.     2. Select Cloud functions on the navigation bar.     3. Select Create Function from the top bar and set a unique name.     4. Scroll down to Advanced options and select Service Account.     5. Select any service account other than the App Engine Default Service Account.     6. Click Save."
   },
   {
+    "checked": "",
     "name": "FBS:CF-007",
     "cloud": "GCP",
     "risk": "high",
@@ -1543,6 +1653,7 @@
     "RemediationSteps": "1. Go to Google Cloud Console.     2. Select Cloud functions on the navigation bar.     3. Select Create Function from the top bar and set a unique name.     4. Select 'http' in Triggers section.     5. Save Cloud Function by clicking the create button."
   },
   {
+    "checked": "",
     "name": "GCP:KMS-001",
     "cloud": "GCP",
     "risk": "high",
@@ -1557,6 +1668,7 @@
     "RemediationSteps": "From Command Line:      1. List all Cloud KMS Cryptokeys.      gcloud kms keys list --keyring=[key_ring_name] --location=global -- format=json | jq '.[ ].name'      2. Remove IAM policy binding for a KMS key to remove access to allUsers and allAuthenticatedUsers using the below command:     gcloud kms keys remove-iam-policy-binding [key_name] -- keyring=[key_ring_name] --location=global --member='allAuthenticatedUsers' -- role='[role]'      gcloud kms keys remove-iam-policy-binding [key_name] -- keyring=[key_ring_name] --location=global --member='allUsers' --role='[role]'"
   },
   {
+    "checked": "",
     "name": "GCP:KMS-002",
     "cloud": "GCP",
     "risk": "medium",
@@ -1571,6 +1683,7 @@
     "RemediationSteps": "From Console:     1. Go to Cryptographic Keys by visiting:     https://console.cloud.google.com/security/kms.     2. Click on the specific key ring     3. From the list of keys, choose the specific key and Click on Right side pop up the     blade (3 dots).     4. Click on Edit rotation period.     5. On the pop-up window, Select a new rotation period in days which should be     less than 90 and then choose Starting on date (date from which the rotation     period begins).     From Command Line:     1. Update and schedule rotation by ROTATION_PERIOD and NEXT_ROTATION_TIME for     each key:     gcloud kms keys update new --keyring=KEY_RING --location=LOCATION --nextrotation-time=NEXT_ROTATION_TIME --rotation-period=ROTATION_PERIOD"
   },
   {
+    "checked": "",
     "name": "FBS:FS-002",
     "cloud": "GCP",
     "risk": "High",
@@ -1585,6 +1698,7 @@
     "RemediationSteps": "1. Go to Google Cloud Console.   2. Select Storage from the Navigation bar.   3. Click on Create Bucket.   4. Set a name for your bucket and add 'backups' in it e.g: Bucketname‐backups   5. Press Continue.    6. Insert the information prior to your bucket and click on Create."
   },
   {
+    "checked": "",
     "name": "FBS:FS-004",
     "cloud": "GCP",
     "risk": "Medium",
@@ -1599,6 +1713,7 @@
     "RemediationSteps": "1. Go to Google Cloud Console.     2. Select Firestore from the Navigation bar.     3. Click on Start Collection.      4. Set the Collection ID.     5. Add its first Document ID.     6. Add the field's name, type and value.     7. Click on Save."
   },
   {
+    "checked": "",
     "name": "GCP:VM-001",
     "cloud": "GCP",
     "risk": "medium",
@@ -1613,6 +1728,7 @@
     "RemediationSteps": "From Console:      1. Go to the VM instances page by visiting: https://console.cloud.google.com/compute/instances.      2. Click on the instance name to go to its VM instance details page.      3. Click STOP and then click EDIT.      4. Under the section Service Account, select a service account other that the default Compute Engine service account. You may first need to create a new service account.      5. Click Save and then click START.          From Command Line:     1. Stop the instance:     gcloud compute instances stop INSTANCE_NAME     2. Update the instance:     gcloud compute instances set-service-account INSTANCE_NAME --serviceaccount=SERVICE_ACCOUNT     3. Restart the instance:     gcloud compute instances start INSTANCE_NAME"
   },
   {
+    "checked": "",
     "name": "GCP:VM-002",
     "cloud": "GCP",
     "risk": "high",
@@ -1627,6 +1743,7 @@
     "RemediationSteps": "From Console:     1. Go to the VM instances page by visiting:     https://console.cloud.google.com/compute/instances.     2. Click on the impacted VM instance.     3. If the instance is not stopped, click the Stop button. Wait for the instance to be     stopped.     4. Next, click the Edit button.     5. Scroll down to the Service Account section.     6. Select a different service account or ensure that Allow full access to all Cloud     APIs is not selected.     7. Click the Save button to save your changes and then click START.          From Command Line:     1. Stop the instance:     gcloud compute instances stop INSTANCE_NAME     2. Update the instance:     gcloud compute instances set-service-account INSTANCE_NAME --serviceaccount=SERVICE_ACCOUNT --scopes [SCOPE1, SCOPE2...]     3. Restart the instance:     gcloud compute instances start INSTANCE_NAME"
   },
   {
+    "checked": "",
     "name": "GCP:VM-003",
     "cloud": "GCP",
     "risk": "medium",
@@ -1641,6 +1758,7 @@
     "RemediationSteps": "From Console:    1. Go to the VM instances page by visiting: https://console.cloud.google.com/compute/instances. It will list all the instances in your project.    2. Click on the name of the Impacted instance    3. Click Edit in the toolbar   4. Under SSH Keys, go to the Block project-wide SSH keys checkbox    5. To block users with project-wide SSH keys from connecting to this instance, select Block project-wide SSH keys    6. Click Save at the bottom of the page    7. Repeat steps for every impacted Instance      From Command Line:   Block project-wide public SSH keys, set the metadata value to TRUE:   gcloud compute instances add-metadata INSTANCE_NAME --metadata block-projectssh-keys=TRUE"
   },
   {
+    "checked": "",
     "name": "GCP:VM-004",
     "cloud": "GCP",
     "risk": "medium",
@@ -1655,6 +1773,7 @@
     "RemediationSteps": "You only edit the canIpForward setting at instance creation time. Therefore, you need to delete the instance and create a new one where canIpForward is set to false. From Console:      1. Go to the VM Instances page by visiting: https://pantheon.corp.google.com/compute/instances.      2. Select the VM Instance you want to remediate.      3. Click the Delete button.      4. On the 'VM Instances' page, click 'CREATE INSTANCE'.      5. Create a new instance with the desired configuration. By default, the instance is configured to not allow IP forwarding.          From Command Line:     1. Delete the instance:     gcloud compute instances delete INSTANCE_NAME     2. Create a new instance to replace it, with IP forwarding set to Off     gcloud compute instances create     "
   },
   {
+    "checked": "",
     "name": "GCP:NET-001",
     "cloud": "GCP",
     "risk": "high",
@@ -1669,6 +1788,7 @@
     "RemediationSteps": "From Console:     1. Go to the VPC networks page by visiting:     https://console.cloud.google.com/networking/networks/list.     2. Click the network named default.     3. On the network detail page, click EDIT.     4. Click DELETE VPC NETWORK.     5. If needed, create a new network to replace the default network.          From Command Line:     For each Google Cloud Platform project,     1. Delete the default network:     gcloud compute networks delete default     2. If needed, create a new network to replace it:     gcloud compute networks create NETWORK_NAME"
   },
   {
+    "checked": "",
     "name": "GCP:NET-003",
     "cloud": "GCP",
     "risk": "high",
@@ -1683,6 +1803,7 @@
     "RemediationSteps": "From the Console:     1. Go to VPC Network.     2. Go to the Firewall Rules.     3. Click the Firewall Rule you want to modify.     4. Click Edit.     5. Modify Source IP ranges to specific IP.     6. Click Save.      From Command Line:     1.Update the Firewall rule with the new SOURCE_RANGE from the below command:     gcloud compute firewall-rules update FirewallName --allow=[PROTOCOL[:PORT[-PORT]],...] --source-ranges=[CIDR_RANGE,...]     "
   },
   {
+    "checked": "",
     "name": "GCP:NET-004",
     "cloud": "GCP",
     "risk": "high",
@@ -1697,6 +1818,7 @@
     "RemediationSteps": "From the Console:     1. Go to VPC Network.     2. Go to the Firewall Rules.     3. Click the Firewall Rule to be modified.     4. Click Edit.     5. Modify Source IP ranges to specific IP.     6. Click Save.      From Command Line:     1.Update RDP Firewall rule with new SOURCE_RANGE from the below command:     gcloud compute firewall-rules update FirewallName --allow=[PROTOCOL[:PORT[-PORT]],...] --source-ranges=[CIDR_RANGE,...]"
   },
   {
+    "checked": "",
     "name": "GCP:IAM-001",
     "cloud": "GCP",
     "risk": "high",
@@ -1711,6 +1833,7 @@
     "RemediationSteps": "Follow the documentation and setup corporate login accounts. Learn more at: https://cloud.google.com/resource-manager/docs/organization-policy/restrictingdomains"
   },
   {
+    "checked": "",
     "name": "GCP:IAM-004",
     "cloud": "GCP",
     "risk": "medium",
@@ -1725,6 +1848,7 @@
     "RemediationSteps": "From Console:    Delete any external (user-managed) Service Account Key older than 90 days:    1. Go to APIs & ServicesCredentials using https://console.cloud.google.com/apis/credentials    2. In the Section Service Account Keys, for every external (user-managed) service account key where creation date is greater than or equal to the past 90 days, click Delete Bin Icon to Delete Service Account key.    Create a new external (user-managed) Service Account Key for a Service Account:    1. Go to APIs & ServicesCredentials using https://console.cloud.google.com/apis/credentials    2. Click Create Credentials and Select Service Account Key.    3. Choose the service account in the drop-down list for which an External (usermanaged) Service Account key needs to be created.    4. Select the desired key type format among JSON or P12.    5. Click Create. It will download the private key. Keep it safe.    6. Click Close if prompted.    7. The site will redirect to the APIs & ServicesCredentials page. Make a note of the new ID displayed in the Service account keys section."
   },
   {
+    "checked": "",
     "name": "GCP:IAM-005",
     "cloud": "GCP",
     "risk": "high",
@@ -1739,6 +1863,7 @@
     "RemediationSteps": "1. Go to the IAM page in the GCP Console using https://console.cloud.google.com/iam-admin/iam   2. In the left navigation pane, click Service accounts. All service accounts and their corresponding keys are listed.   3. Click the service account.   4. Click the edit and delete the keys."
   },
   {
+    "checked": "",
     "name": "GCP:SQL-001",
     "cloud": "GCP",
     "risk": "high",
@@ -1753,6 +1878,7 @@
     "RemediationSteps": "From Console:     1. Go to https://console.cloud.google.com/sql/instances.     2. Click on an instance name to see its configuration overview.     3. In the left-side panel, select Connections.     4. In the SSL connections section, click Allow only SSL connections.     5. Under Configure SSL server certificates click Create new certificate.     6. Under Configure SSL client certificates click Create a client certificate.     7. Follow the instructions shown to learn how to connect to your instance.          From Command Line:     To enforce SSL encryption for an instance run the command:     gcloud sql instances patch INSTANCE_NAME --require-ssl"
   },
   {
+    "checked": "",
     "name": "GCP:SQL-002",
     "cloud": "GCP",
     "risk": "high",
@@ -1767,6 +1893,7 @@
     "RemediationSteps": "From Console:     1. Go to the Cloud SQL Instances page in the Google Cloud Console by visiting     https://console.cloud.google.com/sql/instances.     2. Click the instance name to open its Instance details page.     3. Under the Configuration section click Edit configurations     4. Under Configuration options expand the Connectivity section.     5. Click the delete icon for the authorized network 0.0.0.0/0.     6. Click Save to update the instance.          From Command Line:     Update the authorized network list by dropping off any addresses.     gcloud sql instances patch INSTANCE_NAME --authorizednetworks=IP_ADDR1,IP_ADDR2...     "
   },
   {
+    "checked": "",
     "name": "GCP:SQL-003",
     "cloud": "GCP",
     "risk": "high",
@@ -1781,6 +1908,7 @@
     "RemediationSteps": "From Console:     1. Go to the Cloud SQL Instances page in the Google Cloud Console:     https://console.cloud.google.com/sql/instances     2. Click the instance name to open its Instance details page.     3. Select the Connections tab.     4. Deselect the Public IP checkbox.     5. Click Save to update the instance.          From Command Line:     1. For every instance remove its public IP and assign a private IP instead:     gcloud beta sql instances patch INSTANCE_NAME --network=VPC_NETWOR_NAME --noassign-ip     2. Confirm the changes using the following command:     gcloud sql instances describe INSTANCE_NAME"
   },
   {
+    "checked": "",
     "name": "GCP:SQL-004",
     "cloud": "GCP",
     "risk": "high",
@@ -1795,6 +1923,7 @@
     "RemediationSteps": "From Console:   1. Go to the Cloud SQL Instances page in the Google Cloud Console by visiting   https://console.cloud.google.com/sql/instances.   2. Select the instance where the backups need to be configured.   3. Click Edit.   4. In the Backups section, check 'Enable automated backups', and choose a backup   window.   5. Click Save.      From Command Line:   1. List all Cloud SQL database instances using the following command:   gcloud sql instances list   2. Enable Automated backups for every Cloud SQL database instance using the below   command:   gcloud sql instances patch INSTANCE_NAME --backup-start-time [HH:MM]   "
   },
   {
+    "checked": "",
     "name": "FBS:ST-001",
     "cloud": "GCP",
     "risk": "High",
@@ -1809,6 +1938,7 @@
     "RemediationSteps": "\"1. Go to Google Cloud console: https://console.cloud.google.com/storage/.   2. Select Storage on the navigation bar.   3. Select Bucket for which the global permissions are open.   4. Click on \"\"Edit Bucket Permissions\"\".   5. Remove Admin level Role/Memebers from the buckets & click save. \""
   },
   {
+    "checked": "",
     "name": "FBS:ST-002",
     "cloud": "GCP",
     "risk": "Medium",
