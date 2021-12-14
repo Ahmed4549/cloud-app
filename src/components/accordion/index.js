@@ -43,7 +43,7 @@ export default function CustomAccordion({ data, index, progressValueHandler }) {
       }
     }
   };
-
+  console.log(data);
   return (
     <>
       <Accordion
@@ -58,7 +58,7 @@ export default function CustomAccordion({ data, index, progressValueHandler }) {
           id="panel1bh-header"
         >
           <Checkbox
-            checked={data?.checked}
+            checked={data.checked}
             key={index}
             // id={index}
             name={`newCheckbox${index}`}
